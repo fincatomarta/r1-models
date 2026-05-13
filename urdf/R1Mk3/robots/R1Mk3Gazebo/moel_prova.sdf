@@ -1,0 +1,4052 @@
+<sdf version='1.11'>
+  <model name='R1Mk3'>
+    <link name='mobile_base_body_link'>
+      <inertial>
+        <pose>0.0045315303824320363 0 0.063427513664454233 0 0 0</pose>
+        <mass>22.38733831972927</mass>
+        <inertia>
+          <ixx>0.55544005844141897</ixx>
+          <ixy>0</ixy>
+          <ixz>-0.064000802573885601</ixz>
+          <iyy>0.58687859163690814</iyy>
+          <iyz>0</iyz>
+          <izz>0.26937210286807789</izz>
+        </inertia>
+      </inertial>
+      <collision name='mobile_base_body_link_collision'>
+        <pose>0 0 -0.12 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.32000000000000001 0.32000000000000001 0.080000000000000002</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0</mu>
+              <mu2>0</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='mobile_base_body_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_mob_base_body.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+      <sensor name='base_laser_front' type='gpu_lidar'>
+        <always_on>true</always_on>
+        <update_rate>40</update_rate>
+        <pose>0.070000000000000007 0 0.031 0 0 0</pose>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>1600</samples>
+              <resolution>1</resolution>
+              <min_angle>0</min_angle>
+              <max_angle>6.2800000000000002</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.10000000000000001</min>
+            <max>20</max>
+            <resolution>0.01</resolution>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <mean>0</mean>
+            <stddev>0.0050000000000000001</stddev>
+          </noise>
+        </ray>
+      </sensor>
+      <sensor name='base_laser_back' type='gpu_lidar'>
+        <always_on>true</always_on>
+        <update_rate>40</update_rate>
+        <pose>-0.085000000000000006 0 0.031 0 0 3.1415899999999999</pose>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>1600</samples>
+              <resolution>1</resolution>
+              <min_angle>0</min_angle>
+              <max_angle>6.2800000000000002</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.10000000000000001</min>
+            <max>20</max>
+            <resolution>0.01</resolution>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <mean>0</mean>
+            <stddev>0.0050000000000000001</stddev>
+          </noise>
+        </ray>
+      </sensor>
+    </link>
+    <joint name='mobile_base_l_wheel_joint' type='revolute'>
+      <pose relative_to='mobile_base_body_link'>0 0.1389999999999999 -1.110223024625157e-16 0 7.6627004979949731e-16 0</pose>
+      <parent>mobile_base_body_link</parent>
+      <child>mobile_base_l_tyre_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1745329.25199433</lower>
+          <upper>1745329.25199433</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>0.5</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>true</implicit_spring_damper>
+          <cfm_damping>true</cfm_damping>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
+          </limit>
+        </ode>
+      </physics>
+    </joint>
+    <link name='mobile_base_l_tyre_link'>
+      <pose relative_to='mobile_base_l_wheel_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0.034424898846265151 9.1081134381554296e-06 0 0 0</pose>
+        <mass>3.219985805574467</mass>
+        <inertia>
+          <ixx>0.021487596568520499</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.040375295156197012</iyy>
+          <iyz>-8.8919036000152113e-07</iyz>
+          <izz>0.021483307656942379</izz>
+        </inertia>
+      </inertial>
+      <collision name='mobile_base_l_tyre_link_collision'>
+        <pose>0 0.029999999999999999 0 1.57079632679 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.0050000000000000001</length>
+            <radius>0.16</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='mobile_base_l_tyre_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_mobile_base_l_tyre.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='mobile_base_r_wheel_joint' type='revolute'>
+      <pose relative_to='mobile_base_body_link'>0 -0.13900000000000001 -2.775557561562891e-17 0 0 0</pose>
+      <parent>mobile_base_body_link</parent>
+      <child>mobile_base_r_tyre_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1745329.25199433</lower>
+          <upper>1745329.25199433</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>0.5</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>true</implicit_spring_damper>
+          <cfm_damping>true</cfm_damping>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
+          </limit>
+        </ode>
+      </physics>
+    </joint>
+    <link name='mobile_base_r_tyre_link'>
+      <pose relative_to='mobile_base_r_wheel_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 -0.034424886324843362 9.1029463128722288e-06 0 0 0</pose>
+        <mass>3.2199844996907161</mass>
+        <inertia>
+          <ixx>0.02148758932867002</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.040375282920497753</iyy>
+          <iyz>8.8882412239036054e-07</iyz>
+          <izz>0.02148329999586172</izz>
+        </inertia>
+      </inertial>
+      <collision name='mobile_base_r_tyre_link_collision'>
+        <pose>0 -0.029999999999999999 0 1.57079632679 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.0050000000000000001</length>
+            <radius>0.16</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='mobile_base_r_tyre_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_mobile_base_r_tyre.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='torso_heave_eq_joint' type='prismatic'>
+      <pose relative_to='mobile_base_body_link'>0.043999999999999748 0 0.069999999999999785 0 0 1.156175760751884e-15</pose>
+      <parent>mobile_base_body_link</parent>
+      <child>torso_slider_eq_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.17000000000000001</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>true</implicit_spring_damper>
+          <cfm_damping>true</cfm_damping>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
+          </limit>
+        </ode>
+      </physics>
+    </joint>
+    <link name='torso_slider_eq_link'>
+      <pose relative_to='torso_heave_eq_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.015174971832668071 2.8097522479888202e-06 0.24553275341839231 0 0 0</pose>
+        <mass>5.59982626694707</mass>
+        <inertia>
+          <ixx>0.073080890062707016</ixx>
+          <ixy>-1.369838836351491e-06</ixy>
+          <ixz>0.0046719400245096186</ixz>
+          <iyy>0.072387886849759275</iyy>
+          <iyz>-5.4015291046406733e-18</iyz>
+          <izz>0.055708127154132953</izz>
+        </inertia>
+      </inertial>
+      <collision name='torso_slider_eq_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_torso_slider_eq.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='torso_slider_eq_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_torso_slider_eq.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='torso_roll_eq_joint' type='revolute'>
+      <pose relative_to='torso_slider_eq_link'>2.0816681711721691e-17 -5.2426199821867161e-24 0.40000000000000019 0 2.2204460492503131e-16 -1.837753202326075e-23</pose>
+      <parent>torso_slider_eq_link</parent>
+      <child>torso_pin_eq_link</child>
+      <axis>
+        <xyz>1 1.97215226305253e-31 2.2204460492503131e-16</xyz>
+        <limit>
+          <lower>-0.52359877559829882</lower>
+          <upper>0.52359877559829882</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>true</implicit_spring_damper>
+          <cfm_damping>true</cfm_damping>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
+          </limit>
+        </ode>
+      </physics>
+    </joint>
+    <link name='torso_pin_eq_link'>
+      <pose relative_to='torso_roll_eq_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 6.1232339957367657e-24 0 0 0</pose>
+        <mass>0.31999477371302232</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='torso_pin_eq_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_torso_pin_eq.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='torso_pin_eq_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_torso_pin_eq.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='torso_pitch_eq_joint' type='revolute'>
+      <pose relative_to='torso_pin_eq_link'>-1.3183898417423729e-16 -5.769801341748891e-19 -8.8817841970012523e-16 2.6774301874383278e-32 1.110223024625156e-16 -1.27675647831893e-15</pose>
+      <parent>torso_pin_eq_link</parent>
+      <child>torso_platform_link</child>
+      <axis>
+        <xyz>1.27675647831893e-15 -1 3.850838789091266e-31</xyz>
+        <limit>
+          <lower>-0.52359877559829882</lower>
+          <upper>0.52359877559829882</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>true</implicit_spring_damper>
+          <cfm_damping>true</cfm_damping>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
+          </limit>
+        </ode>
+      </physics>
+    </joint>
+    <link name='torso_platform_link'>
+      <pose relative_to='torso_pitch_eq_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-2.0816681711721691e-17 -1.260994669755557e-16 0 0 0 0</pose>
+        <mass>0.031999825298309553</mass>
+        <inertia>
+          <ixx>3.2666488325358538e-05</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>3.2666488325358491e-05</iyy>
+          <iyz>0</iyz>
+          <izz>6.4799646229076897e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='torso_platform_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_torso_platform.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='torso_platform_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_torso_platform.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='torso_yaw_joint' type='revolute'>
+      <pose relative_to='torso_platform_link'>2.2204460492503131e-16 -1.6880686544087089e-16 0.069500000000000117 -1.089883515799323e-15 1.4574786319396411e-16 2.1509846834854739e-15</pose>
+      <parent>torso_platform_link</parent>
+      <child>chest_link</child>
+      <axis>
+        <xyz>-1.4574786319396411e-16 -1.089883515799323e-15 1</xyz>
+        <limit>
+          <lower>-1.0471975511965981</lower>
+          <upper>1.0471975511965981</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>true</implicit_spring_damper>
+          <cfm_damping>true</cfm_damping>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
+          </limit>
+        </ode>
+      </physics>
+    </joint>
+    <link name='chest_link'>
+      <pose relative_to='torso_yaw_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.053425083629440623 0.0004451185528156479 0.1635018628180239 0 0 0</pose>
+        <mass>11.006630670053781</mass>
+        <inertia>
+          <ixx>0.22592706246813529</ixx>
+          <ixy>-0.00013730159439597731</ixy>
+          <ixz>0.02779269377606956</ixz>
+          <iyy>0.21551813958910929</iyy>
+          <iyz>-0.0069597909015428503</iyz>
+          <izz>0.10409836015106209</izz>
+        </inertia>
+      </inertial>
+      <collision name='chest_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_chest.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='chest_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_chest.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='l_shoulder_pitch' type='revolute'>
+      <pose relative_to='chest_link'>-0.084000531506839171 0.1201348479575705 0.286332955917873 0.4622726861915209 -0.997456518019465 -0.39653030287188651</pose>
+      <parent>chest_link</parent>
+      <child>l_shoulder_1</child>
+      <axis>
+        <xyz>-1.149080830487037e-14 1.000000000000002 1.000588500943422e-14</xyz>
+        <limit>
+          <lower>-2.9670597283903599</lower>
+          <upper>0.6108652381980153</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>true</implicit_spring_damper>
+          <cfm_damping>true</cfm_damping>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
+          </limit>
+        </ode>
+      </physics>
+    </joint>
+    <link name='l_shoulder_1'>
+      <pose relative_to='l_shoulder_pitch'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.0019464117321353891 0.066852583219970729 -0.001525090959314912 0 0 0</pose>
+        <mass>0.92053022703385867</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_shoulder_1_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_shoulder_1.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='l_shoulder_1_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_shoulder_1.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='l_shoulder_roll' type='revolute'>
+      <pose relative_to='l_shoulder_1'>0.002499999999994396 0.09330000000000116 -0.0043301270189194394 -0.24434609527918352 1.0471975511966272 1.6653345369378186e-15</pose>
+      <parent>l_shoulder_1</parent>
+      <child>l_shoulder_2</child>
+      <axis>
+        <xyz>1 -1.9872992140790299e-14 -1.23789867245705e-14</xyz>
+        <limit>
+          <lower>-0.26179938779914941</lower>
+          <upper>2.617993877991494</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>true</implicit_spring_damper>
+          <cfm_damping>true</cfm_damping>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
+          </limit>
+        </ode>
+      </physics>
+    </joint>
+    <link name='l_shoulder_2'>
+      <pose relative_to='l_shoulder_roll'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.0026665323917125991 0.0051543253707670433 -0.050187073303659679 0 0 0</pose>
+        <mass>0.61254780697415057</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_shoulder_2_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_shoulder_2.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='l_shoulder_2_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_shoulder_2.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='l_arm_ft_sensor' type='fixed'>
+      <pose relative_to='l_shoulder_2'>-0.0043499999999987854 0.015000000000000039 -0.084300000000000042 -1.1378201852273149e-16 1.323442223866156e-14 -1.189046386037337e-14</pose>
+      <parent>l_shoulder_2</parent>
+      <child>l_shoulder_3</child>
+      <axis>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+      </axis>
+      <physics>
+        <ode>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
+          </limit>
+        </ode>
+      </physics>
+      <sensor name='l_arm_ft' type='force_torque'>
+        <always_on>true</always_on>
+        <update_rate>100</update_rate>
+        <force_torque>
+          <frame>sensor</frame>
+          <measure_direction>child_to_parent</measure_direction>
+        </force_torque>
+        <pose>-2.1510599999999999e-16 0 0 3.1415899999999999 -2.5480487470951226e-16 -1.5708</pose>
+      </sensor>
+    </joint>
+    <link name='l_shoulder_3'>
+      <pose relative_to='l_arm_ft_sensor'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.0001031584390220816 -0.0021062597852904989 -0.056341881668335307 0 0 0</pose>
+        <mass>0.46232495324679362</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_shoulder_3_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_shoulder_3.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='l_shoulder_3_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_shoulder_3.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='l_shoulder_yaw' type='revolute'>
+      <pose relative_to='l_shoulder_3'>4.5796699765787707e-16 -2.2759572004815709e-15 -0.092500000000000138 9.9143964884634627e-14 8.8469769704557777e-13 1.293841979897996e-14</pose>
+      <parent>l_shoulder_3</parent>
+      <child>l_upper_arm</child>
+      <axis>
+        <xyz>8.9792073516142823e-13 -9.8812124057437802e-14 -0.99999999999999223</xyz>
+        <limit>
+          <lower>-0.90757121103705141</lower>
+          <upper>1.43116998663535</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>true</implicit_spring_damper>
+          <cfm_damping>true</cfm_damping>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
+          </limit>
+        </ode>
+      </physics>
+    </joint>
+    <link name='l_upper_arm'>
+      <pose relative_to='l_shoulder_yaw'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.001636090695056699 0.00028760919938605739 -0.02912948442929441 0 0 0</pose>
+        <mass>5.1520815164623528</mass>
+        <inertia>
+          <ixx>0.016843398710057949</ixx>
+          <ixy>-1.492592009842048e-05</ixy>
+          <ixz>-0.0002059716006555403</ixz>
+          <iyy>0.01682263214871604</iyy>
+          <iyz>-0.00051362369063481361</iyz>
+          <izz>0.0073914612107317083</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_upper_arm_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_upperarm.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='l_upper_arm_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_upperarm.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='l_elbow' type='revolute'>
+      <pose relative_to='l_upper_arm'>0.010000000000109281 -0.0015000000000126019 -0.12370000000000431 9.8825626860737151e-14 0.041023619928135115 -1.5393375483343214e-14</pose>
+      <parent>l_upper_arm</parent>
+      <child>l_forearm</child>
+      <axis>
+        <xyz>1.7510203204685579e-14 -1.0000000000000011 -1.9873021927624371e-13</xyz>
+        <limit>
+          <lower>-0.087266462599716474</lower>
+          <upper>2.0943951023931948</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>true</implicit_spring_damper>
+          <cfm_damping>true</cfm_damping>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
+          </limit>
+        </ode>
+      </physics>
+    </joint>
+    <link name='l_forearm'>
+      <pose relative_to='l_elbow'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.017870832470124911 0.00035280282893729309 -0.12013406586454391 0 0 0</pose>
+        <mass>1.512728024327753</mass>
+        <inertia>
+          <ixx>0.0099999999999999985</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0099999999999999985</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_forearm_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_forearm.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='l_forearm_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_forearm.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='l_wrist_yaw' type='revolute'>
+      <pose relative_to='l_forearm'>-0.014999999999964519 0.0020000000000215679 -0.244349999999982 1.44508199961922e-13 7.4733275123861631e-13 -8.7014912012990935e-14</pose>
+      <parent>l_forearm</parent>
+      <child>l_wrist_1</child>
+      <axis>
+        <xyz>8.856976024991497e-13 -9.8868132681695017e-14 -0.99999999999999289</xyz>
+        <limit>
+          <lower>-1.605702911834783</lower>
+          <upper>1.605702911834783</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>true</implicit_spring_damper>
+          <cfm_damping>true</cfm_damping>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
+          </limit>
+        </ode>
+      </physics>
+    </joint>
+    <link name='l_wrist_1'>
+      <pose relative_to='l_wrist_yaw'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.0001454507349839679 -0.00015595311920038599 0.022377795694245001 0 0 0</pose>
+        <mass>0.1226928</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_wrist_1_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_wrist_1.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='l_wrist_1_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_wrist_1.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='l_wrist_roll' type='revolute'>
+      <pose relative_to='l_wrist_1'>8.3266726846886741e-17 -1.110223024625157e-16 -5.5511151231257827e-17 3.8957755749656462e-16 -1.8735013540549519e-16 -3.9200515392339539e-16</pose>
+      <parent>l_wrist_1</parent>
+      <child>l_wrist_2</child>
+      <axis>
+        <xyz>-1.0000000000000011 4.9795034090006916e-16 9.0205620750794141e-17</xyz>
+        <limit>
+          <lower>-0.3490658503988659</lower>
+          <upper>0.52359877559829882</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>true</implicit_spring_damper>
+          <cfm_damping>true</cfm_damping>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
+          </limit>
+        </ode>
+      </physics>
+    </joint>
+    <link name='l_wrist_2'>
+      <pose relative_to='l_wrist_roll'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-7.4183919215875543e-09 -0.0007897157534373368 -0.0046969679508168114 0 0 0</pose>
+        <mass>0.02118836</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_wrist_2_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_wrist_2.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='l_wrist_2_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_wrist_2.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='l_wrist_pitch' type='revolute'>
+      <pose relative_to='l_wrist_2'>-2.2204460492503131e-16 -1.9428902930940239e-16 3.3306690738754701e-16 -2.3886932623546178e-16 7.6327832942979512e-16 2.705372411553399e-16</pose>
+      <parent>l_wrist_2</parent>
+      <child>l_hand_palm</child>
+      <axis>
+        <xyz>-1.8206634388052269e-16 -1 -1.1667247808882281e-15</xyz>
+        <limit>
+          <lower>-0.3490658503988659</lower>
+          <upper>0.3490658503988659</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>true</implicit_spring_damper>
+          <cfm_damping>true</cfm_damping>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
+          </limit>
+        </ode>
+      </physics>
+    </joint>
+    <link name='l_hand_palm'>
+      <pose relative_to='l_wrist_pitch'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.0039505022241781151 0.0019881930945492292 -0.058015852438740537 0 0 0</pose>
+        <mass>0.20364988213680779</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_hand_palm_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_hand_palm.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='l_hand_palm_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_hand_palm.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='l_index_add' type='revolute'>
+      <pose relative_to='l_hand_palm'>0.022499999999999951 -0.0015000000000005009 -0.068599999999999939 -1.2522076049083522e-15 -0.29670597283903655 1.0514741729292331e-16</pose>
+      <parent>l_hand_palm</parent>
+      <child>l_hand_index_1</child>
+      <axis>
+        <xyz>1.234575507297431e-15 0.99999999999999989 -1.5044469189520821e-15</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.26179938779914941</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='l_hand_index_1'>
+      <pose relative_to='l_index_add'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.0084303067492778536 0.003851023184440638 -0.017148502808541129 0 0 0</pose>
+        <mass>0.019232639999999999</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_hand_index_1_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_hand_index_1.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='l_hand_index_1_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_hand_index_1.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='l_index_prox' type='revolute'>
+      <pose relative_to='l_hand_index_1'>0.0091925333174279339 2.775557561562891e-17 -0.03071345131623815 2.6634781619822038e-16 8.3266726846886741e-17 -1.343766948842112e-16</pose>
+      <parent>l_hand_index_1</parent>
+      <child>l_hand_index_2</child>
+      <axis>
+        <xyz>-0.99999999999999989 7.4528226743243134e-16 4.1355807667287073e-15</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.570796326794897</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='l_hand_index_2'>
+      <pose relative_to='l_index_prox'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>5.6100110941745267e-05 0.0011131331914286391 -0.01742880406449937 0 0 0</pose>
+        <mass>0.0074863660000000004</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_hand_index_2_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_hand_index_2.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='l_hand_index_2_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_hand_index_2.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='l_index_dist' type='revolute'>
+      <pose relative_to='l_hand_index_2'>1.110223024625157e-16 -0.001500000000000473 -0.039999999999999591 -7.4823261926990119e-08 -1.4693679385278594e-39 -2.179263307354809e-16</pose>
+      <parent>l_hand_index_2</parent>
+      <child>l_hand_index_3</child>
+      <axis>
+        <xyz>-0.99999999999999989 2.3144325758661232e-16 2.4980018780932858e-16</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.7994344588061539</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='l_hand_index_3'>
+      <pose relative_to='l_index_dist'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>4.4313566732491483e-05 0.002754671185518837 -0.018890916917498331 0 0 0</pose>
+        <mass>0.007251413</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_hand_index_3_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_hand_index_3.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='l_hand_index_3_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_hand_index_3.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='l_middle_prox' type='revolute'>
+      <pose relative_to='l_hand_palm'>0.0096000000000000668 -0.001500000000000334 -0.10299999999999999 0.00054797289165424499 2.1857515797307769e-15 -9.2272889361862775e-16</pose>
+      <parent>l_hand_palm</parent>
+      <child>l_hand_middle_1</child>
+      <axis>
+        <xyz>-1 -3.7164962121615918e-17 3.448299563192889e-15</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.570796326794897</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='l_hand_middle_1'>
+      <pose relative_to='l_middle_prox'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>5.6094144233995863e-05 0.00109383639135302 -0.0174225309754375 0 0 0</pose>
+        <mass>0.0074863660000000004</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_hand_middle_1_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_hand_middle_1.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='l_hand_middle_1_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_hand_middle_1.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='l_middle_dist' type='revolute'>
+      <pose relative_to='l_hand_middle_1'>1.110223024625157e-16 -0.001499999999999863 -0.040000000000000042 0.0175357063632136 -2.3592239273284581e-16 -8.049862317525965e-17</pose>
+      <parent>l_hand_middle_1</parent>
+      <child>l_hand_middle_2</child>
+      <axis>
+        <xyz>-1 -4.6117517236589977e-16 -2.8219344323360819e-15</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.7994344588061539</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='l_hand_middle_2'>
+      <pose relative_to='l_middle_dist'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>4.4316320155644163e-05 0.0027547229469275241 -0.018890877319942882 0 0 0</pose>
+        <mass>0.007251413</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_hand_middle_2_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_hand_middle_2.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='l_hand_middle_2_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_hand_middle_2.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='l_pinkie_prox' type='revolute'>
+      <pose relative_to='l_hand_palm'>-0.035982322249527299 -0.0023883158589562141 -0.092065609292098838 -1.9934588677535882e-05 0.087281756512392117 0.026187612448127368</pose>
+      <parent>l_hand_palm</parent>
+      <child>l_hand_pinkie_1</child>
+      <axis>
+        <xyz>-0.9999999998538297 7.6447724640329582e-06 -1.5293757710324599e-05</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.570796326794897</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='l_hand_pinkie_1'>
+      <pose relative_to='l_pinkie_prox'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>3.6554577562467737e-05 0.0012135491682558901 -0.015052861815374409 0 0 0</pose>
+        <mass>0.0063575860000000001</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_hand_pinkie_1_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_hand_pinkie_1.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='l_hand_pinkie_1_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_hand_pinkie_1.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='l_pinkie_dist' type='revolute'>
+      <pose relative_to='l_hand_pinkie_1'>0 -0.0014999999959518231 -0.03500000000409309 -4.4386812336867388e-05 3.6082248300317592e-16 -3.4000580129145394e-16</pose>
+      <parent>l_hand_pinkie_1</parent>
+      <child>l_hand_pinkie_2</child>
+      <axis>
+        <xyz>-0.99999999985382948 7.6454512955634878e-06 -1.529341837144303e-05</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.7226399717184031</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='l_hand_pinkie_2'>
+      <pose relative_to='l_pinkie_dist'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>2.2378292628411071e-05 0.0027712834790767919 -0.018930353878106151 0 0 0</pose>
+        <mass>0.0072402370000000001</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_hand_pinkie_2_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_hand_pinkie_2.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='l_hand_pinkie_2_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_hand_pinkie_2.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='l_ring_prox' type='revolute'>
+      <pose relative_to='l_hand_palm'>-0.015417755558119899 -0.0018498137284706779 -0.097880671838844413 -4.0018190882431439e-05 0.08726646259973235 0.026179938779914511</pose>
+      <parent>l_hand_palm</parent>
+      <child>l_hand_ring_1</child>
+      <axis>
+        <xyz>-1 2.1873778829895049e-17 3.4278135885301708e-15</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.570796326794897</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='l_hand_ring_1'>
+      <pose relative_to='l_ring_prox'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>5.6109534143974217e-05 0.001113903955753115 -0.017428756834488971 0 0 0</pose>
+        <mass>0.0074863660000000004</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_hand_ring_1_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_hand_ring_1.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='l_hand_ring_1_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_hand_ring_1.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='l_ring_dist' type='revolute'>
+      <pose relative_to='l_hand_ring_1'>-2.775557561562891e-17 -0.001499999999999863 -0.040000000000000091 -0.00012044308636065531 -5.5511151231257852e-17 -6.5919492087118657e-17</pose>
+      <parent>l_hand_ring_1</parent>
+      <child>l_hand_ring_2</child>
+      <axis>
+        <xyz>-1 2.1042471424136879e-15 -3.397828655065724e-16</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.7994344588061539</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='l_hand_ring_2'>
+      <pose relative_to='l_ring_dist'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>4.433654030530642e-05 0.0027546754597598529 -0.018890859497324941 0 0 0</pose>
+        <mass>0.007251413</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_hand_ring_2_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_hand_ring_2.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='l_hand_ring_2_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_hand_ring_2.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='l_thumb_add' type='revolute'>
+      <pose relative_to='l_hand_palm'>0.023374863256390339 -0.00299999999999967 -0.034523838473555828 -0.040449700618591239 0.22331918636553133 2.9608435412698331</pose>
+      <parent>l_hand_palm</parent>
+      <child>l_hand_thumb_1</child>
+      <axis>
+        <xyz>-2.8310687127941492e-15 6.4531713306337224e-16 -1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.74532925199433</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='l_hand_thumb_1'>
+      <pose relative_to='l_thumb_add'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.018039176431428289 -0.0028662725726853471 0.002117771948690506 0 0 0</pose>
+        <mass>0.029029542280278559</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_hand_thumb_1_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_hand_thumb_1.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='l_hand_thumb_1_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_hand_thumb_1.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='l_thumb_prox' type='revolute'>
+      <pose relative_to='l_hand_thumb_1'>-0.038093197450346519 -0.0032591938585445619 -0.0036017448037202189 1.4305744121725279 -0.19703059799949338 1.5984202269739933</pose>
+      <parent>l_hand_thumb_1</parent>
+      <child>l_hand_thumb_2</child>
+      <axis>
+        <xyz>-0.99999999999999978 1.5642875883514759e-11 1.793754103585066e-10</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.570796326794897</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='l_hand_thumb_2'>
+      <pose relative_to='l_thumb_prox'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>1.169139325249424e-05 0.00030451625727886961 -0.01489461305988151 0 0 0</pose>
+        <mass>0.0074430587826330901</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_hand_thumb_2_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_hand_thumb_2.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='l_hand_thumb_2_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_hand_thumb_2.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='l_thumb_dist' type='revolute'>
+      <pose relative_to='l_hand_thumb_2'>5.5511151231257827e-17 -0.0037106254246526689 -0.034835057900884363 -0.063288770977381378 1.1102230246251573e-16 2.6684383869213255e-15</pose>
+      <parent>l_hand_thumb_2</parent>
+      <child>l_hand_thumb_3</child>
+      <axis>
+        <xyz>-0.99999999999999967 4.2638396354421478e-12 1.8000612565858529e-10</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.76976386152225</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='l_hand_thumb_3'>
+      <pose relative_to='l_thumb_dist'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-2.8909987974501391e-05 0.0027777675147018792 -0.016956792352400218 0 0 0</pose>
+        <mass>0.0083910305242430906</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_hand_thumb_3_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_hand_thumb_3.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='l_hand_thumb_3_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_l_hand_thumb_3.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='neck_pitch_joint' type='revolute'>
+      <pose relative_to='chest_link'>-0.093999999999999695 -1.591111589827949e-16 0.33049999999999857 1.426636586643311e-14 1.1313955190051011e-15 4.4868448346273753e-15</pose>
+      <parent>chest_link</parent>
+      <child>neck_link</child>
+      <axis>
+        <xyz>1.1561757607518889e-15 1 -5.5511151231109521e-17</xyz>
+        <limit>
+          <lower>-0.52359877559829882</lower>
+          <upper>0.87266462599716477</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>true</implicit_spring_damper>
+          <cfm_damping>true</cfm_damping>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
+          </limit>
+        </ode>
+      </physics>
+    </joint>
+    <link name='neck_link'>
+      <pose relative_to='neck_pitch_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.00032165504399302852 -1.7030856145811001e-17 0.077555311145997008 0 0 0</pose>
+        <mass>1.3999999999999999</mass>
+        <inertia>
+          <ixx>0.0042979349262165156</ixx>
+          <ixy>1.6175679588350529e-19</ixy>
+          <ixz>-0.000592816958988333</ixz>
+          <iyy>0.0044378416786105563</iyy>
+          <iyz>6.8540059854495454e-19</iyz>
+          <izz>0.00041990385827938659</izz>
+        </inertia>
+      </inertial>
+      <collision name='neck_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_cer_emorph_neck.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='neck_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_cer_emorph_neck.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='neck_yaw_joint' type='revolute'>
+      <pose relative_to='neck_link'>0.011679488023179691 -9.6775033272569817e-18 0.15837799581859979 -1.2299256863622808e-15 0.17453292519943309 -7.0402329338488499e-15</pose>
+      <parent>neck_link</parent>
+      <child>head_link</child>
+      <axis>
+        <xyz>5.5511151231257827e-17 -1.0407701698506789e-17 1</xyz>
+        <limit>
+          <lower>-1.396263401595464</lower>
+          <upper>1.396263401595464</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>true</implicit_spring_damper>
+          <cfm_damping>true</cfm_damping>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
+          </limit>
+        </ode>
+      </physics>
+    </joint>
+    <link name='head_link'>
+      <pose relative_to='neck_yaw_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.040406180045669697 -4.2542625989512791e-06 0.0013074297220510009 0 0 0</pose>
+        <mass>2.0000000000000009</mass>
+        <inertia>
+          <ixx>0.01426863648555681</ixx>
+          <ixy>-2.4580692667491169e-07</ixy>
+          <ixz>0.0005550255193361971</ixz>
+          <iyy>0.0045807078346956423</iyy>
+          <iyz>-4.3342393217813968e-08</iyz>
+          <izz>0.01322280437463689</izz>
+        </inertia>
+      </inertial>
+      <collision name='head_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_cer_emorph_head.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='head_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_cer_emorph_head.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+      <sensor name='stereo_left_depth' type='rgbd_camera'>
+        <always_on>true</always_on>
+        <update_rate>30</update_rate>
+        <pose>0.051326799999999999 -0.025000000000000001 0.053754799999999998 3.6173999999999999e-06 3.4015900000000007e-06 6.3785799999999997e-07</pose>
+        <camera name='stereo_left_depth'>
+          <pose>0.051326799999999999 -0.025000000000000001 0.053754799999999998 3.6173999999999999e-06 3.4015900000000007e-06 6.3785799999999997e-07</pose>
+          <horizontal_fov>1.0225900000000001</horizontal_fov>
+          <distortion>
+            <k1>0</k1>
+            <k2>0</k2>
+            <k3>0</k3>
+            <p1>0</p1>
+            <p2>0</p2>
+            <center>319.5 239.5</center>
+          </distortion>
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.02</near>
+            <far>3000</far>
+          </clip>
+        </camera>
+      </sensor>
+      <sensor name='stereo_left_rgb' type='camera'>
+        <always_on>true</always_on>
+        <update_rate>30</update_rate>
+        <pose>0.051326799999999999 -0.025000000000000001 0.053754799999999998 3.6173999999999999e-06 3.4015900000000007e-06 6.3785799999999997e-07</pose>
+        <camera name='stereo_left_rgb'>
+          <pose>0.051326799999999999 -0.025000000000000001 0.053754799999999998 3.6173999999999999e-06 3.4015900000000007e-06 6.3785799999999997e-07</pose>
+          <horizontal_fov>1.0225900000000001</horizontal_fov>
+          <distortion>
+            <k1>0</k1>
+            <k2>0</k2>
+            <k3>0</k3>
+            <p1>0</p1>
+            <p2>0</p2>
+            <center>319.5 239.5</center>
+          </distortion>
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.02</near>
+            <far>3000</far>
+          </clip>
+        </camera>
+      </sensor>
+      <sensor name='stereo_right_depth' type='rgbd_camera'>
+        <always_on>true</always_on>
+        <update_rate>30</update_rate>
+        <pose>0.051326799999999999 0.025000000000000001 0.053754799999999998 3.6173999999999999e-06 3.4015900000000007e-06 6.3785799999999997e-07</pose>
+        <camera name='stereo_right_depth'>
+          <pose>0.051326799999999999 0.025000000000000001 0.053754799999999998 3.6173999999999999e-06 3.4015900000000007e-06 6.3785799999999997e-07</pose>
+          <horizontal_fov>1.0225900000000001</horizontal_fov>
+          <distortion>
+            <k1>0</k1>
+            <k2>0</k2>
+            <k3>0</k3>
+            <p1>0</p1>
+            <p2>0</p2>
+            <center>319.5 239.5</center>
+          </distortion>
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.02</near>
+            <far>3000</far>
+          </clip>
+        </camera>
+      </sensor>
+      <sensor name='stereo_right_rgb' type='camera'>
+        <always_on>true</always_on>
+        <update_rate>30</update_rate>
+        <pose>0.051326799999999999 0.025000000000000001 0.053754799999999998 3.6173999999999999e-06 3.4015900000000007e-06 6.3785799999999997e-07</pose>
+        <camera name='stereo_right_rgb'>
+          <pose>0.051326799999999999 0.025000000000000001 0.053754799999999998 3.6173999999999999e-06 3.4015900000000007e-06 6.3785799999999997e-07</pose>
+          <horizontal_fov>1.0225900000000001</horizontal_fov>
+          <distortion>
+            <k1>0</k1>
+            <k2>0</k2>
+            <k3>0</k3>
+            <p1>0</p1>
+            <p2>0</p2>
+            <center>319.5 239.5</center>
+          </distortion>
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.02</near>
+            <far>3000</far>
+          </clip>
+        </camera>
+      </sensor>
+    </link>
+    <joint name='r_shoulder_pitch' type='revolute'>
+      <pose relative_to='chest_link'>-0.084000531506838963 -0.1201348479575705 0.28633295591786878 -0.46227268619152012 -0.99745651801946489 0.39653030287188296</pose>
+      <parent>chest_link</parent>
+      <child>r_shoulder_1</child>
+      <axis>
+        <xyz>8.7707618945387367e-15 1.0000000000000011 -7.0637939941775577e-15</xyz>
+        <limit>
+          <lower>-2.9670597283903599</lower>
+          <upper>0.6108652381980153</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>true</implicit_spring_damper>
+          <cfm_damping>true</cfm_damping>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
+          </limit>
+        </ode>
+      </physics>
+    </joint>
+    <link name='r_shoulder_1'>
+      <pose relative_to='r_shoulder_pitch'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.001941414130598784 -0.066853310188894122 -0.00153764721332289 0 0 0</pose>
+        <mass>0.92053022703385867</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_shoulder_1_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_shoulder_1.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='r_shoulder_1_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_shoulder_1.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='r_shoulder_roll' type='revolute'>
+      <pose relative_to='r_shoulder_1'>0.0037499999999991429 -0.093300000000000549 -0.0064951905283833766 0.24434609527919793 1.0471975511966001 2.4258373088059762e-14</pose>
+      <parent>r_shoulder_1</parent>
+      <child>r_shoulder_2</child>
+      <axis>
+        <xyz>-1 -1.429412144204889e-14 1.021405182655144e-14</xyz>
+        <limit>
+          <lower>-0.26179938779914941</lower>
+          <upper>2.617993877991494</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>true</implicit_spring_damper>
+          <cfm_damping>true</cfm_damping>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
+          </limit>
+        </ode>
+      </physics>
+    </joint>
+    <link name='r_shoulder_2'>
+      <pose relative_to='r_shoulder_roll'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-7.4657460784589846e-05 -0.0068734362494467793 -0.044288216483542753 0 0 0</pose>
+        <mass>0.60803962207104489</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_shoulder_2_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_shoulder_2.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='r_shoulder_2_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_shoulder_2.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='r_arm_ft_sensor' type='fixed'>
+      <pose relative_to='r_shoulder_2'>-0.0068499999999994754 -0.0150000000000001 -0.084300000000000153 -1.1679620594505111e-16 6.8261368779687359e-15 4.94835800753015e-15</pose>
+      <parent>r_shoulder_2</parent>
+      <child>r_shoulder_3</child>
+      <axis>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+      </axis>
+      <physics>
+        <ode>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
+          </limit>
+        </ode>
+      </physics>
+      <sensor name='r_arm_ft' type='force_torque'>
+        <always_on>true</always_on>
+        <update_rate>100</update_rate>
+        <force_torque>
+          <frame>sensor</frame>
+          <measure_direction>child_to_parent</measure_direction>
+        </force_torque>
+        <pose>0 0 0 -3.1415899999999999 -2.2018409705638724e-17 1.5708</pose>
+      </sensor>
+    </joint>
+    <link name='r_shoulder_3'>
+      <pose relative_to='r_arm_ft_sensor'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.00011402388285693821 0.0021062597854318581 -0.056341881668333538 0 0 0</pose>
+        <mass>0.46232495324679362</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_shoulder_3_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_shoulder_3.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='r_shoulder_3_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_shoulder_3.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='r_shoulder_yaw' type='revolute'>
+      <pose relative_to='r_shoulder_3'>1.378758218706366e-14 0 -0.092499999999999583 1.0867658778094489e-13 -3.511889672298818e-13 -8.3886570311094349e-14</pose>
+      <parent>r_shoulder_3</parent>
+      <child>r_upper_arm</child>
+      <axis>
+        <xyz>-1.075609870267587e-14 -7.3244934539179923e-15 1</xyz>
+        <limit>
+          <lower>-0.90757121103705141</lower>
+          <upper>1.43116998663535</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>true</implicit_spring_damper>
+          <cfm_damping>true</cfm_damping>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
+          </limit>
+        </ode>
+      </physics>
+    </joint>
+    <link name='r_upper_arm'>
+      <pose relative_to='r_shoulder_yaw'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.0016337943691091051 -0.00028490447170981259 -0.029132739182779699 0 0 0</pose>
+        <mass>5.1513518815124062</mass>
+        <inertia>
+          <ixx>0.01684087469499583</ixx>
+          <ixy>-4.2516063976280431e-06</ixy>
+          <ixz>-0.00020760347528950599</ixz>
+          <iyy>0.01682011144824113</iyy>
+          <iyz>0.00051315328591287977</iyz>
+          <izz>0.007390922215738868</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_upper_arm_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_upperarm.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='r_upper_arm_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_upperarm.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='r_elbow' type='revolute'>
+      <pose relative_to='r_upper_arm'>0.01000000000000017 0.0014999999999925631 -0.12369999999999989 -8.7766029626054539e-15 8.6211636787791868e-14 -4.6133259837049699e-15</pose>
+      <parent>r_upper_arm</parent>
+      <child>r_forearm</child>
+      <axis>
+        <xyz>-6.8811553984781438e-15 -1.0000000000000011 -1.766090636148874e-13</xyz>
+        <limit>
+          <lower>-0.087266462599716474</lower>
+          <upper>2.0943951023931948</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>true</implicit_spring_damper>
+          <cfm_damping>true</cfm_damping>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
+          </limit>
+        </ode>
+      </physics>
+    </joint>
+    <link name='r_forearm'>
+      <pose relative_to='r_elbow'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.017870144976380831 -0.00043369235091492148 -0.1201340745623698 0 0 0</pose>
+        <mass>1.512728024327753</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0099999999999999985</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_forearm_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_forearm.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='r_forearm_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_forearm.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='r_wrist_yaw' type='revolute'>
+      <pose relative_to='r_forearm'>-0.014999999999887589 -0.0020000000000319762 -0.24435000000000509 -7.8780732163003718e-15 -4.1640546262836092e-13 5.3958980296073267e-15</pose>
+      <parent>r_forearm</parent>
+      <child>r_wrist_1</child>
+      <axis>
+        <xyz>-8.6980552968516467e-14 1.828757929369694e-13 1.000000000000002</xyz>
+        <limit>
+          <lower>-1.605702911834783</lower>
+          <upper>1.605702911834783</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>true</implicit_spring_damper>
+          <cfm_damping>true</cfm_damping>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
+          </limit>
+        </ode>
+      </physics>
+    </joint>
+    <link name='r_wrist_1'>
+      <pose relative_to='r_wrist_yaw'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.00014544607175177171 0.00015592470704070549 0.02237780082140239 0 0 0</pose>
+        <mass>0.1226927620678238</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_wrist_1_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_wrist_1.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='r_wrist_1_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_wrist_1.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='r_wrist_roll' type='revolute'>
+      <pose relative_to='r_wrist_1'>7.6327832942979512e-17 2.4980018054066022e-16 3.3306690738754701e-16 6.3169412432885002e-16 1.7406865879254771e-16 -2.979556976579619e-16</pose>
+      <parent>r_wrist_1</parent>
+      <child>r_wrist_2</child>
+      <axis>
+        <xyz>0.99999999999999933 -2.685670425200266e-16 -1.1855750756128991e-16</xyz>
+        <limit>
+          <lower>-0.3490658503988659</lower>
+          <upper>0.52359877559829882</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>true</implicit_spring_damper>
+          <cfm_damping>true</cfm_damping>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
+          </limit>
+        </ode>
+      </physics>
+    </joint>
+    <link name='r_wrist_2'>
+      <pose relative_to='r_wrist_roll'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>5.05499045400093e-11 0.00078973726062933625 -0.0046969600550065271 0 0 0</pose>
+        <mass>0.021188357245777192</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_wrist_2_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_wrist_2.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='r_wrist_2_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_wrist_2.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='r_wrist_pitch' type='revolute'>
+      <pose relative_to='r_wrist_2'>5.5511151231257827e-17 -5.5511151231257827e-17 -2.2204460492503131e-16 3.2643052087827599e-16 -6.1907944048922303e-17 -2.4254449631447998e-16</pose>
+      <parent>r_wrist_2</parent>
+      <child>r_hand_palm</child>
+      <axis>
+        <xyz>2.6683062497815518e-16 -0.99999999999999944 -6.5945079678597079e-16</xyz>
+        <limit>
+          <lower>-0.3490658503988659</lower>
+          <upper>0.3490658503988659</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>true</implicit_spring_damper>
+          <cfm_damping>true</cfm_damping>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
+          </limit>
+        </ode>
+      </physics>
+    </joint>
+    <link name='r_hand_palm'>
+      <pose relative_to='r_wrist_pitch'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.0039821579727825074 -0.0021135289059891478 -0.058423713941864908 0 0 0</pose>
+        <mass>0.20200684046881159</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_hand_palm_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_hand_palm.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='r_hand_palm_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_hand_palm.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='r_index_add' type='revolute'>
+      <pose relative_to='r_hand_palm'>0.022499999999999909 0.001500000000000556 -0.068599999999999717 -1.821978509787579e-15 0.29670597283904032 3.1415926535897918</pose>
+      <parent>r_hand_palm</parent>
+      <child>r_hand_index_1</child>
+      <axis>
+        <xyz>-2.8199000035257549e-16 -0.99999999999999944 1.3731809894432949e-15</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.26179938779914941</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='r_hand_index_1'>
+      <pose relative_to='r_index_add'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.008420124408709713 0.003850331678233287 -0.017149426112797739 0 0 0</pose>
+        <mass>0.019232477290189801</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_hand_index_1_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_hand_index_1.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='r_hand_index_1_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_hand_index_1.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='r_index_prox' type='revolute'>
+      <pose relative_to='r_hand_index_1'>-0.0091925333174277812 2.775557561562891e-17 -0.030713451316238431 -6.5198074125942192e-16 2.2204460492503131e-16 5.5070694098685628e-17</pose>
+      <parent>r_hand_index_1</parent>
+      <child>r_hand_index_2</child>
+      <axis>
+        <xyz>-0.99999999999999933 3.6406577215821259e-15 -2.1371793224034271e-15</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.570796326794897</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='r_hand_index_2'>
+      <pose relative_to='r_index_prox'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>5.610258533736423e-05 0.001113105012511995 -0.01742880980571504 0 0 0</pose>
+        <mass>0.0074863659974675279</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_hand_index_2_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_hand_index_2.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='r_hand_index_2_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_hand_index_2.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='r_index_dist' type='revolute'>
+      <pose relative_to='r_hand_index_2'>9.7144514654701197e-17 -0.001499999999999946 -0.04000000000000048 1.001557167821902e-16 1.110223024625157e-16 -3.1692584754466921e-16</pose>
+      <parent>r_hand_index_2</parent>
+      <child>r_hand_index_3</child>
+      <axis>
+        <xyz>-0.99999999999999933 -4.8830941189442072e-16 -5.2735593669694926e-16</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.7994344588061539</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='r_hand_index_3'>
+      <pose relative_to='r_index_dist'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>4.432513430773638e-05 0.0027547026217409338 -0.018890877357257141 0 0 0</pose>
+        <mass>0.0072514133556674321</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_hand_index_3_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_hand_index_3.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='r_hand_index_3_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_hand_index_3.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='r_middle_prox' type='revolute'>
+      <pose relative_to='r_hand_palm'>0.0096000000000000182 0.001500000000000556 -0.1029999999999997 -1.5201721959961371e-15 1.7965772099171051e-15 3.1415926535897918</pose>
+      <parent>r_hand_palm</parent>
+      <child>r_hand_middle_1</child>
+      <axis>
+        <xyz>-0.99999999999999956 -4.4302906341327937e-15 6.654290833629744e-16</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.570796326794897</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='r_hand_middle_1'>
+      <pose relative_to='r_middle_prox'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>5.6102585337319127e-05 0.001113104682790411 -0.017428809832769121 0 0 0</pose>
+        <mass>0.0074863659974675279</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_hand_middle_1_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_hand_middle_1.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='r_hand_middle_1_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_hand_middle_1.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='r_middle_dist' type='revolute'>
+      <pose relative_to='r_hand_middle_1'>6.9388939039072284e-18 -0.001499999999999724 -0.040000000000000147 -7.5355509381940386e-08 1.5894403848637502e-16 -2.100302896011764e-17</pose>
+      <parent>r_hand_middle_1</parent>
+      <child>r_hand_middle_2</child>
+      <axis>
+        <xyz>-0.99999999999999967 -2.0389677846702302e-15 2.9506560397368901e-15</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.7994344588061539</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='r_hand_middle_2'>
+      <pose relative_to='r_middle_dist'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>4.4325134307694747e-05 0.0027547091926723171 -0.01889087639907067 0 0 0</pose>
+        <mass>0.0072514133556674321</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_hand_middle_2_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_hand_middle_2.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='r_hand_middle_2_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_hand_middle_2.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='r_pinkie_prox' type='revolute'>
+      <pose relative_to='r_hand_palm'>-0.035982680943166118 0.002377759579109628 -0.092068281319463652 0.00041095343994377822 -0.087266462599728395 3.1154127148098771</pose>
+      <parent>r_hand_palm</parent>
+      <child>r_hand_pinkie_1</child>
+      <axis>
+        <xyz>-0.99999999999999967 4.2975605712980417e-15 -3.1918911957973251e-16</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.570796326794897</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='r_hand_pinkie_1'>
+      <pose relative_to='r_pinkie_prox'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>3.6162601474352268e-05 0.001214705094112978 -0.015053109692718451 0 0 0</pose>
+        <mass>0.0063575857336381353</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_hand_pinkie_1_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_hand_pinkie_1.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='r_hand_pinkie_1_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_hand_pinkie_1.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='r_pinkie_dist' type='revolute'>
+      <pose relative_to='r_hand_pinkie_1'>2.775557561562891e-17 -0.0015141933093789639 -0.034999388832118561 -0.001295691519822652 -1.110223024625157e-16 -2.4980018054066047e-16</pose>
+      <parent>r_hand_pinkie_1</parent>
+      <child>r_hand_pinkie_2</child>
+      <axis>
+        <xyz>-0.99999999999999967 1.122199955094049e-15 -2.590508193996497e-15</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.7226399717184031</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='r_hand_pinkie_2'>
+      <pose relative_to='r_pinkie_dist'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>2.1391072559044651e-05 0.0027712863562941998 -0.018930305880602131 0 0 0</pose>
+        <mass>0.0072402374907640727</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_hand_pinkie_2_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_hand_pinkie_2.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='r_hand_pinkie_2_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_hand_pinkie_2.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='r_ring_prox' type='revolute'>
+      <pose relative_to='r_hand_palm'>-0.015417755558119939 0.001849813728471178 -0.097880671838844135 -1.8551905834863092e-15 -0.087266462599728728 3.1154127148098771</pose>
+      <parent>r_hand_palm</parent>
+      <child>r_hand_ring_1</child>
+      <axis>
+        <xyz>-0.99999999999999967 -3.617118096769719e-15 -4.7323256424647298e-15</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.570796326794897</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='r_hand_ring_1'>
+      <pose relative_to='r_ring_prox'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>5.6102585337293113e-05 0.001113104599958725 -0.01742880983956557 0 0 0</pose>
+        <mass>0.0074863659974675279</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_hand_ring_1_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_hand_ring_1.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='r_hand_ring_1_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_hand_ring_1.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='r_ring_dist' type='revolute'>
+      <pose relative_to='r_hand_ring_1'>4.163336342344337e-17 -0.0015000000000001961 -0.039999999999999418 -1.387778780781446e-17 -4.163336342344337e-17 -7.6327832942979537e-17</pose>
+      <parent>r_hand_ring_1</parent>
+      <child>r_hand_ring_2</child>
+      <axis>
+        <xyz>-0.99999999999999967 4.0592529337857291e-16 -5.8980598183211638e-17</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.7994344588061539</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='r_hand_ring_2'>
+      <pose relative_to='r_ring_dist'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>4.4325134307722502e-05 0.00275470906266162 -0.018890876418029171 0 0 0</pose>
+        <mass>0.0072514133556674321</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_hand_ring_2_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_hand_ring_2.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='r_hand_ring_2_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_hand_ring_2.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='r_thumb_add' type='revolute'>
+      <pose relative_to='r_hand_palm'>0.023374863256390498 0.0030000000000003908 -0.034523838473554613 1.6736776245982782e-15 -0.22689280275926477 -4.8059121629858555e-17</pose>
+      <parent>r_hand_palm</parent>
+      <child>r_hand_thumb_1</child>
+      <axis>
+        <xyz>4.9960036108132044e-16 2.677550652830949e-15 0.99999999999999989</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.74532925199433</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='r_hand_thumb_1'>
+      <pose relative_to='r_thumb_add'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.018375632440381699 -4.55521018183358e-05 0.002126473485347669 0 0 0</pose>
+        <mass>0.028941741890370441</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_hand_thumb_1_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_hand_thumb_1.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='r_hand_thumb_1_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_hand_thumb_1.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='r_thumb_prox' type='revolute'>
+      <pose relative_to='r_hand_thumb_1'>0.038074654499560531 0.003469109580325203 -0.0036017448035498001 1.4305744121375039 0.19703059795893499 -1.4222071875351321</pose>
+      <parent>r_hand_thumb_1</parent>
+      <child>r_hand_thumb_2</child>
+      <axis>
+        <xyz>-1.0000000000000011 -1.4266365866433262e-14 2.550043509685906e-15</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.570796326794897</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='r_hand_thumb_2'>
+      <pose relative_to='r_thumb_prox'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>1.1691406974989599e-05 0.00030451621296398451 -0.014894613060785541 0 0 0</pose>
+        <mass>0.0074430587826330901</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_hand_thumb_2_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_hand_thumb_2.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='r_hand_thumb_2_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_hand_thumb_2.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='r_thumb_dist' type='revolute'>
+      <pose relative_to='r_hand_thumb_2'>-5.5511151231257827e-17 -0.0037106255282952638 -0.034835057889843882 -0.063288773952620406 3.1641356201816977e-15 1.4696577288475481e-14</pose>
+      <parent>r_hand_thumb_2</parent>
+      <child>r_hand_thumb_3</child>
+      <axis>
+        <xyz>-1.000000000000002 -2.8857703148647837e-14 2.7310966301870408e-16</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.76976386152225</upper>
+          <effort>1000000000</effort>
+          <velocity>1000000000</velocity>
+        </limit>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='r_hand_thumb_3'>
+      <pose relative_to='r_thumb_dist'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-2.8601851543103018e-05 0.0027378892568393209 -0.016935937291633129 0 0 0</pose>
+        <mass>0.008481423658381124</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_hand_thumb_3_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_hand_thumb_3.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='r_hand_thumb_3_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://R1Mk3/meshes/simmechanics/sim_emorph_r_hand_thumb_3.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.625 0.625 0.625 1</diffuse>
+          <ambient>0.625 0.625 0.625 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <plugin name='gzyarp::ControlBoard' filename='gz-sim-yarp-controlboard-system'>
+      <yarpConfigurationFile>model://R1Mk3/conf/gazebo_cer_torso.ini</yarpConfigurationFile>
+    </plugin>
+    <plugin name='gzyarp::ControlBoard' filename='gz-sim-yarp-controlboard-system'>
+      <yarpConfigurationFile>model://R1Mk3/conf/gazebo_cer_head.ini</yarpConfigurationFile>
+    </plugin>
+    <plugin name='gzyarp::ControlBoard' filename='gz-sim-yarp-controlboard-system'>
+      <yarpConfigurationFile>model://R1Mk3/conf/gazebo_cer_left_arm.ini</yarpConfigurationFile>
+      <initialConfiguration>-0.52 0.52 0 0.785 0 0 0.0</initialConfiguration>
+    </plugin>
+    <plugin name='gzyarp::ControlBoard' filename='gz-sim-yarp-controlboard-system'>
+      <yarpConfigurationFile>model://R1Mk3/conf/gazebo_cer_left_hand_mk5_1.ini</yarpConfigurationFile>
+    </plugin>
+    <plugin name='gzyarp::ForceTorque' filename='gz-sim-yarp-forcetorque-system'>
+      <yarpConfigurationFile>model://R1Mk3/conf/FT/gazebo_cer_left_arm_ft.ini</yarpConfigurationFile>
+    </plugin>
+    <plugin name='gzyarp::ControlBoard' filename='gz-sim-yarp-controlboard-system'>
+      <yarpConfigurationFile>model://R1Mk3/conf/gazebo_cer_right_arm.ini</yarpConfigurationFile>
+      <initialConfiguration>-0.52 0.52 0 0.785 0 0 0.0</initialConfiguration>
+    </plugin>
+    <plugin name='gzyarp::ControlBoard' filename='gz-sim-yarp-controlboard-system'>
+      <yarpConfigurationFile>model://R1Mk3/conf/gazebo_cer_right_hand_mk5_1.ini</yarpConfigurationFile>
+    </plugin>
+    <plugin name='gzyarp::ForceTorque' filename='gz-sim-yarp-forcetorque-system'>
+      <yarpConfigurationFile>model://R1Mk3/conf/FT/gazebo_cer_right_arm_ft.ini</yarpConfigurationFile>
+    </plugin>
+    <plugin name='gzyarp::Laser' filename='gz-sim-yarp-laser-system'>
+      <yarpConfigurationFile>model://R1Mk3/conf/sensors/gazebo_cer_laser_sensor_back.ini</yarpConfigurationFile>
+    </plugin>
+    <plugin name='gzyarp::Laser' filename='gz-sim-yarp-laser-system'>
+      <yarpConfigurationFile>model://R1Mk3/conf/sensors/gazebo_cer_laser_sensor_front.ini</yarpConfigurationFile>
+    </plugin>
+    <plugin name='gzyarp::ControlBoard' filename='gz-sim-yarp-controlboard-system'>
+      <yarpConfigurationFile>model://R1Mk3/conf/gazebo_cer_mobile_base.ini</yarpConfigurationFile>
+    </plugin>
+    <plugin name='gzyarp::DepthCamera' filename='gz-sim-yarp-depthcamera-system'>
+      <yarpConfigurationString>(yarpDeviceName depthcamera_plugin_left_device) (parentLinkName head_link) (sensorName stereo_left_depth) (display_timestamp) (display_time_box)</yarpConfigurationString>
+    </plugin>
+    <plugin name='gzyarp::DepthCamera' filename='gz-sim-yarp-depthcamera-system'>
+      <yarpConfigurationString>(yarpDeviceName depthcamera_plugin_right_device) (parentLinkName head_link) (sensorName stereo_right_depth) (display_timestamp) (display_time_box)</yarpConfigurationString>
+    </plugin>
+    <plugin name='gzyarp::RobotInterface' filename='gz-sim-yarp-robotinterface-system'>
+      <yarpRobotInterfaceConfigurationFile>model://R1Mk3/conf/r1mk3_gz_sim.xml</yarpRobotInterfaceConfigurationFile>
+      <yarpRobotInterfaceEnableTags>(enable_ros2)</yarpRobotInterfaceEnableTags>
+      <yarpRobotInterfaceDisableTags/>
+    </plugin>
+    <pose>0 0 0.16 0 0 0</pose>
+    <pose>0 0 0.90000000000000002 0 0 0</pose>
+    <frame name='base_link_fixed_joint' attached_to='mobile_base_body_link'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='base_link' attached_to='base_link_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='mobile_base_double_lidar_fixed_joint' attached_to='mobile_base_body_link'>
+      <pose>0 0 0.031 0 0 0</pose>
+    </frame>
+    <frame name='mobile_base_double_lidar' attached_to='mobile_base_double_lidar_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='mobile_base_lidar_B_fixed_joint' attached_to='mobile_base_body_link'>
+      <pose>-0.085000000000000006 0 0.031 0 0 3.1415926535897931</pose>
+    </frame>
+    <frame name='mobile_base_lidar_B' attached_to='mobile_base_lidar_B_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='mobile_base_lidar_F_fixed_joint' attached_to='mobile_base_body_link'>
+      <pose>0.070000000000000007 0 0.031 0 0 0</pose>
+    </frame>
+    <frame name='mobile_base_lidar_F' attached_to='mobile_base_lidar_F_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='torso_tripod_root_fixed_joint' attached_to='torso_platform_link'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='torso_tripod_root' attached_to='torso_tripod_root_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='torso_fixed_joint' attached_to='chest_link'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='torso' attached_to='torso_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_arm_ft_fixed_joint' attached_to='l_shoulder_2'>
+      <pose>-0.0043499999999990066 0.015000000000000071 -0.084300000000000042 3.1415926535897798 -8.8271378829529112e-17 -1.5707963267948899</pose>
+    </frame>
+    <frame name='l_arm_ft' attached_to='l_arm_ft_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_index_skin_0_fixed_joint' attached_to='l_hand_index_3'>
+      <pose>-1.387778780781446e-17 -0.0024339180582365338 -0.031405457778888923 0 1.2225055986691187 -1.5707963267948966</pose>
+    </frame>
+    <frame name='l_hand_index_skin_0' attached_to='l_hand_index_skin_0_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_index_skin_10_fixed_joint' attached_to='l_hand_index_3'>
+      <pose>-0.0033000000000000251 -0.0040819409883985081 -0.037766684597958011 -3.1415926535897909 1.5049109712528816 1.5707963267948997</pose>
+    </frame>
+    <frame name='l_hand_index_skin_10' attached_to='l_hand_index_skin_10_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_index_skin_11_fixed_joint' attached_to='l_hand_index_3'>
+      <pose>-0.0033000000000000108 -0.0031311476143919552 -0.033280418005286923 -4.8473364524039414e-16 1.2200949024613614 -1.5707963267948972</pose>
+    </frame>
+    <frame name='l_hand_index_skin_11' attached_to='l_hand_index_skin_11_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_index_skin_1_fixed_joint' attached_to='l_hand_index_3'>
+      <pose>0.0032999999999999969 -0.0031311476143919552 -0.033280418005286923 -1.6157788174679809e-16 1.2200949024613605 -1.5707963267948974</pose>
+    </frame>
+    <frame name='l_hand_index_skin_1' attached_to='l_hand_index_skin_1_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_index_skin_2_fixed_joint' attached_to='l_hand_index_3'>
+      <pose>-6.9388939039072284e-18 -0.0037582416535799912 -0.035192049408458943 -8.474330061772118e-16 1.3056813328515089 -1.5707963267948974</pose>
+    </frame>
+    <frame name='l_hand_index_skin_2' attached_to='l_hand_index_skin_2_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_index_skin_3_fixed_joint' attached_to='l_hand_index_3'>
+      <pose>0.0032999999999999969 -0.0040819409883984248 -0.037766684597958011 -3.1415926535897909 1.5049109712528816 1.5707963267948997</pose>
+    </frame>
+    <frame name='l_hand_index_skin_3' attached_to='l_hand_index_skin_3_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_index_skin_4_fixed_joint' attached_to='l_hand_index_3'>
+      <pose>0.0059295259422763383 -0.0011923206886612081 -0.037999999999999978 3.1415926535897918 1.2994442229713614 2.7771555423255911</pose>
+    </frame>
+    <frame name='l_hand_index_skin_4' attached_to='l_hand_index_skin_4_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_index_skin_5_fixed_joint' attached_to='l_hand_index_3'>
+      <pose>1.387778780781446e-17 -0.003484092163351243 -0.03982136611863335 -3.1415926535897931 1.0887513297983602 1.5707963267948972</pose>
+    </frame>
+    <frame name='l_hand_index_skin_5' attached_to='l_hand_index_skin_5_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_index_skin_6_fixed_joint' attached_to='l_hand_index_3'>
+      <pose>0.0032999999999999701 -0.001828801718873424 -0.04176963440415199 3.1415926535897931 0.77881558931378225 2.5320677565812</pose>
+    </frame>
+    <frame name='l_hand_index_skin_6' attached_to='l_hand_index_skin_6_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_index_skin_7_fixed_joint' attached_to='l_hand_index_3'>
+      <pose>-6.9388939039072284e-18 -0.00029018466437888407 -0.043259640911881003 -3.1415926535897931 0.62094801830227364 1.5712124826321163</pose>
+    </frame>
+    <frame name='l_hand_index_skin_7' attached_to='l_hand_index_skin_7_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_index_skin_8_fixed_joint' attached_to='l_hand_index_3'>
+      <pose>-0.0033000000000000251 -0.0018288017188733689 -0.041769634404151927 -3.1415926535897931 0.77881558931378292 0.6095248970085938</pose>
+    </frame>
+    <frame name='l_hand_index_skin_8' attached_to='l_hand_index_skin_8_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_index_skin_9_fixed_joint' attached_to='l_hand_index_3'>
+      <pose>-0.0059295259422763869 -0.0011923206886612081 -0.037999999999999978 -3.1415926535897918 1.2994442229713634 0.3644371112642032</pose>
+    </frame>
+    <frame name='l_hand_index_skin_9' attached_to='l_hand_index_skin_9_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_middle_skin_0_fixed_joint' attached_to='l_hand_middle_2'>
+      <pose>0 -0.0024339180582365061 -0.031405457778888868 4.8795054574472963e-16 1.2225055986691216 -1.5707963267948959</pose>
+    </frame>
+    <frame name='l_hand_middle_skin_0' attached_to='l_hand_middle_skin_0_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_middle_skin_10_fixed_joint' attached_to='l_hand_middle_2'>
+      <pose>-0.0032999999999999731 -0.0040819409883984248 -0.037766684597957963 3.14159265358979 1.5049109712528883 1.5707963267948941</pose>
+    </frame>
+    <frame name='l_hand_middle_skin_10' attached_to='l_hand_middle_skin_10_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_middle_skin_11_fixed_joint' attached_to='l_hand_middle_2'>
+      <pose>-0.0032999999999999939 -0.0031311476143918719 -0.033280418005286798 3.2315576349359711e-16 1.2200949024613619 -1.5707963267948959</pose>
+    </frame>
+    <frame name='l_hand_middle_skin_11' attached_to='l_hand_middle_skin_11_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_middle_skin_1_fixed_joint' attached_to='l_hand_middle_2'>
+      <pose>0.0033000000000000039 -0.003131147614391927 -0.033280418005286798 3.2315576349359711e-16 1.2200949024613619 -1.5707963267948959</pose>
+    </frame>
+    <frame name='l_hand_middle_skin_1' attached_to='l_hand_middle_skin_1_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_middle_skin_2_fixed_joint' attached_to='l_hand_middle_2'>
+      <pose>-6.9388939039072284e-18 -0.003758241653579963 -0.035192049408458943 4.2371650308860575e-16 1.3056813328515098 -1.5707963267948957</pose>
+    </frame>
+    <frame name='l_hand_middle_skin_2' attached_to='l_hand_middle_skin_2_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_middle_skin_3_fixed_joint' attached_to='l_hand_middle_2'>
+      <pose>0.0033000000000000108 -0.0040819409883983693 -0.037766684597958011 3.1415926535897891 1.5049109712528748 1.5707963267948961</pose>
+    </frame>
+    <frame name='l_hand_middle_skin_3' attached_to='l_hand_middle_skin_3_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_middle_skin_4_fixed_joint' attached_to='l_hand_middle_2'>
+      <pose>0.0059295259422763556 -0.0011923206886611799 -0.037999999999999978 3.1415926535897918 1.2994442229713614 2.7771555423255898</pose>
+    </frame>
+    <frame name='l_hand_middle_skin_4' attached_to='l_hand_middle_skin_4_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_middle_skin_5_fixed_joint' attached_to='l_hand_middle_2'>
+      <pose>1.0408340855860839e-17 -0.003484092163351105 -0.03982136611863335 3.1415926535897927 1.08875132979836 1.5707963267948968</pose>
+    </frame>
+    <frame name='l_hand_middle_skin_5' attached_to='l_hand_middle_skin_5_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_middle_skin_6_fixed_joint' attached_to='l_hand_middle_2'>
+      <pose>0.0033000000000000078 -0.0018288017188733689 -0.041769634404151879 3.1415926535897931 0.77881558931378303 2.5320677565812</pose>
+    </frame>
+    <frame name='l_hand_middle_skin_6' attached_to='l_hand_middle_skin_6_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_middle_skin_7_fixed_joint' attached_to='l_hand_middle_2'>
+      <pose>-3.4694469519536142e-18 -0.00029018466437885643 -0.043259640911880948 3.1415926535897931 0.62094801830227331 1.5712124826321163</pose>
+    </frame>
+    <frame name='l_hand_middle_skin_7' attached_to='l_hand_middle_skin_7_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_middle_skin_8_fixed_joint' attached_to='l_hand_middle_2'>
+      <pose>-0.0032999999999999939 -0.001828801718873396 -0.041769634404151927 -3.1415926535897931 0.77881558931378303 0.60952489700859325</pose>
+    </frame>
+    <frame name='l_hand_middle_skin_8' attached_to='l_hand_middle_skin_8_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_middle_skin_9_fixed_joint' attached_to='l_hand_middle_2'>
+      <pose>-0.0059295259422763704 -0.0011923206886612081 -0.037999999999999978 -3.1415926535897918 1.2994442229713623 0.36443711126420331</pose>
+    </frame>
+    <frame name='l_hand_middle_skin_9' attached_to='l_hand_middle_skin_9_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_pinkie_skin_0_fixed_joint' attached_to='l_hand_pinkie_2'>
+      <pose>1.13645870820217e-06 -0.0024339180633243811 -0.031405457765181222 4.4810406990410062e-05 1.2225055984639668 -1.5707618523704918</pose>
+    </frame>
+    <frame name='l_hand_pinkie_skin_0' attached_to='l_hand_pinkie_skin_0_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_pinkie_skin_10_fixed_joint' attached_to='l_hand_pinkie_2'>
+      <pose>-0.0032987788557854239 -0.0040819157634487957 -0.037766735051979812 3.1413603639097785 1.5049109693635629 1.570556895652063</pose>
+    </frame>
+    <frame name='l_hand_pinkie_skin_10' attached_to='l_hand_pinkie_skin_10_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_pinkie_skin_11_fixed_joint' attached_to='l_hand_pinkie_2'>
+      <pose>-0.0032988401968928951 -0.0031311223894700808 -0.033280468459722053 4.4514986435598638e-05 1.2200949022586136 -1.5707621667995171</pose>
+    </frame>
+    <frame name='l_hand_pinkie_skin_11' attached_to='l_hand_pinkie_skin_11_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_pinkie_skin_1_fixed_joint' attached_to='l_hand_pinkie_2'>
+      <pose>0.0033011598021423852 -0.0031311728494486379 -0.033280367523160832 4.4514986435760218e-05 1.2200949022586138 -1.5707621667995171</pose>
+    </frame>
+    <frame name='l_hand_pinkie_skin_1' attached_to='l_hand_pinkie_skin_1_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_pinkie_skin_2_fixed_joint' attached_to='l_hand_pinkie_2'>
+      <pose>1.184243586624389e-06 -0.003758241658629063 -0.035192049394463298 5.8367315429833395e-05 1.3056813325377095 -1.5707476441460573</pose>
+    </frame>
+    <frame name='l_hand_pinkie_skin_2' attached_to='l_hand_pinkie_skin_2_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_pinkie_skin_3_fixed_joint' attached_to='l_hand_pinkie_2'>
+      <pose>0.003301221143249856 -0.0040819662234273801 -0.037766634115418529 3.1413603639097785 1.5049109693635629 1.570556895652063</pose>
+    </frame>
+    <frame name='l_hand_pinkie_skin_3' attached_to='l_hand_pinkie_skin_3_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_pinkie_skin_4_fixed_joint' attached_to='l_hand_pinkie_2'>
+      <pose>0.0059307727457831791 -0.0011923660276871311 -0.037999909302654962 3.141572315440389 1.2994585118923032 2.777128302871704</pose>
+    </frame>
+    <frame name='l_hand_pinkie_skin_4' attached_to='l_hand_pinkie_skin_4_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_pinkie_skin_5_fixed_joint' attached_to='l_hand_pinkie_2'>
+      <pose>1.2571376604118829e-06 -0.003484092168408337 -0.039821366104064282 3.1415596646367669 1.0887513294579223 1.5707594515236121</pose>
+    </frame>
+    <frame name='l_hand_pinkie_skin_5' attached_to='l_hand_pinkie_skin_5_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_pinkie_skin_6_fixed_joint' attached_to='l_hand_pinkie_2'>
+      <pose>0.003301299588302498 -0.0018288269539681601 -0.041769583920880871 3.1415803523625092 0.77882812859008299 2.532051470238895</pose>
+    </frame>
+    <frame name='l_hand_pinkie_skin_6' attached_to='l_hand_pinkie_skin_6_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_pinkie_skin_7_fixed_joint' attached_to='l_hand_pinkie_2'>
+      <pose>1.334139499511305e-06 -0.00029018466952934752 -0.043259640896536333 3.1415738500676058 0.62094802446613828 1.5711938971698838</pose>
+    </frame>
+    <frame name='l_hand_pinkie_skin_7' attached_to='l_hand_pinkie_skin_7_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_pinkie_skin_8_fixed_joint' attached_to='l_hand_pinkie_2'>
+      <pose>-0.0032987004107327689 -0.001828776493989603 -0.041769684857442153 3.1415803529363591 0.77880304982795945 0.60950861117916477</pose>
+    </frame>
+    <frame name='l_hand_pinkie_skin_8' attached_to='l_hand_pinkie_skin_8_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_pinkie_skin_9_fixed_joint' attached_to='l_hand_pinkie_2'>
+      <pose>-0.0059282791370360924 -0.001192275359883477 -0.038000090668096898 3.1415723183445299 1.2994299338602717 0.36440987468607983</pose>
+    </frame>
+    <frame name='l_hand_pinkie_skin_9' attached_to='l_hand_pinkie_skin_9_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_ring_skin_0_fixed_joint' attached_to='l_hand_ring_2'>
+      <pose>6.9388939039072284e-18 -0.002433918058236562 -0.031405457778888812 8.1325090957454452e-16 1.2225055986691196 -1.5707963267948968</pose>
+    </frame>
+    <frame name='l_hand_ring_skin_0' attached_to='l_hand_ring_skin_0_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_ring_skin_10_fixed_joint' attached_to='l_hand_ring_2'>
+      <pose>-0.0033000000000000039 -0.0040819409883983693 -0.037766684597957963 3.1415926535897909 1.504910971252885 1.570796326794897</pose>
+    </frame>
+    <frame name='l_hand_ring_skin_10' attached_to='l_hand_ring_skin_10_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_ring_skin_11_fixed_joint' attached_to='l_hand_ring_2'>
+      <pose>-0.0032999999999999891 -0.003131147614391927 -0.03328041800528686 3.2315576349359608e-16 1.2200949024613614 -1.5707963267948972</pose>
+    </frame>
+    <frame name='l_hand_ring_skin_11' attached_to='l_hand_ring_skin_11_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_ring_skin_1_fixed_joint' attached_to='l_hand_ring_2'>
+      <pose>0.00330000000000001 -0.0031311476143919552 -0.033280418005286798 3.2315576349359608e-16 1.2200949024613614 -1.5707963267948972</pose>
+    </frame>
+    <frame name='l_hand_ring_skin_1' attached_to='l_hand_ring_skin_1_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_ring_skin_2_fixed_joint' attached_to='l_hand_ring_2'>
+      <pose>-5.2041704279304213e-18 -0.0037582416535799912 -0.035192049408458881 2.1185825154430295e-16 1.3056813328515089 -1.5707963267948968</pose>
+    </frame>
+    <frame name='l_hand_ring_skin_2' attached_to='l_hand_ring_skin_2_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_ring_skin_3_fixed_joint' attached_to='l_hand_ring_2'>
+      <pose>0.0033000000000000078 -0.004081940988398397 -0.037766684597957963 3.1415926535897882 1.504910971252885 1.5707963267948928</pose>
+    </frame>
+    <frame name='l_hand_ring_skin_3' attached_to='l_hand_ring_skin_3_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_ring_skin_4_fixed_joint' attached_to='l_hand_ring_2'>
+      <pose>0.005929525942276373 -0.0011923206886612361 -0.037999999999999923 3.1415926535897918 1.2994442229713614 2.7771555423255898</pose>
+    </frame>
+    <frame name='l_hand_ring_skin_4' attached_to='l_hand_ring_skin_4_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_ring_skin_5_fixed_joint' attached_to='l_hand_ring_2'>
+      <pose>6.9388939039072284e-18 -0.0034840921633511601 -0.03982136611863335 3.1415926535897927 1.08875132979836 1.5707963267948968</pose>
+    </frame>
+    <frame name='l_hand_ring_skin_5' attached_to='l_hand_ring_skin_5_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_ring_skin_6_fixed_joint' attached_to='l_hand_ring_2'>
+      <pose>0.0032999999999999939 -0.0018288017188733689 -0.041769634404151927 3.1415926535897931 0.77881558931378292 2.5320677565812</pose>
+    </frame>
+    <frame name='l_hand_ring_skin_6' attached_to='l_hand_ring_skin_6_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_ring_skin_7_fixed_joint' attached_to='l_hand_ring_2'>
+      <pose>1.9081958235744881e-17 -0.00029018466437888407 -0.043259640911880892 3.1415926535897931 0.62094801830227331 1.5712124826321163</pose>
+    </frame>
+    <frame name='l_hand_ring_skin_7' attached_to='l_hand_ring_skin_7_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_ring_skin_8_fixed_joint' attached_to='l_hand_ring_2'>
+      <pose>-0.0032999999999999848 -0.0018288017188733689 -0.041769634404151927 -3.1415926535897931 0.77881558931378214 0.60952489700859303</pose>
+    </frame>
+    <frame name='l_hand_ring_skin_8' attached_to='l_hand_ring_skin_8_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_ring_skin_9_fixed_joint' attached_to='l_hand_ring_2'>
+      <pose>-0.0059295259422763556 -0.0011923206886611799 -0.037999999999999923 -3.1415926535897931 1.2994442229713605 0.36443711126420292</pose>
+    </frame>
+    <frame name='l_hand_ring_skin_9' attached_to='l_hand_ring_skin_9_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_thumb_skin_0_fixed_joint' attached_to='l_hand_thumb_3'>
+      <pose>-2.2125551391027901e-11 -0.002433587294553452 -0.026405457778888849 -1.1609969985086113e-11 -1.2225055986691165 1.5707963268683354</pose>
+    </frame>
+    <frame name='l_hand_thumb_skin_0' attached_to='l_hand_thumb_skin_0_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_thumb_skin_10_fixed_joint' attached_to='l_hand_thumb_3'>
+      <pose>-0.0033000000232776272 -0.0040816102247012709 -0.032766684597363913 3.1415926535743122 -1.5049109712528597 -1.5707963267955467</pose>
+    </frame>
+    <frame name='l_hand_thumb_skin_10' attached_to='l_hand_thumb_skin_10_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_thumb_skin_11_fixed_joint' attached_to='l_hand_thumb_3'>
+      <pose>-0.0033000000224659709 -0.003130816850694718 -0.028280418004692841 -1.1627790682026489e-11 -1.2200949024613583 1.5707963268688567</pose>
+    </frame>
+    <frame name='l_hand_thumb_skin_11' attached_to='l_hand_thumb_skin_11_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_thumb_skin_1_fixed_joint' attached_to='l_hand_thumb_3'>
+      <pose>0.0032999999775339961 -0.0031308168507229168 -0.028280418005880902 3.1415926535712519 -0.61086523819801608 -1.5707963270239167</pose>
+    </frame>
+    <frame name='l_hand_thumb_skin_1' attached_to='l_hand_thumb_skin_1_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_thumb_skin_2_fixed_joint' attached_to='l_hand_thumb_3'>
+      <pose>-2.2812751687695251e-11 -0.003757910889896882 -0.03019204940845889 -1.0975316721252331e-11 -1.3056813328515029 1.5707963268508713</pose>
+    </frame>
+    <frame name='l_hand_thumb_skin_2' attached_to='l_hand_thumb_skin_2_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_thumb_skin_3_fixed_joint' attached_to='l_hand_thumb_3'>
+      <pose>0.003299999976722368 -0.004081610224729415 -0.032766684598551948 3.1415926535712519 -0.61086523819801608 -1.5707963270239167</pose>
+    </frame>
+    <frame name='l_hand_thumb_skin_3' attached_to='l_hand_thumb_skin_3_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_thumb_skin_4_fixed_joint' attached_to='l_hand_thumb_3'>
+      <pose>0.0059295259189690863 -0.0011919899250033841 -0.033000000001067273 1.5707963239488156 -1.5075075558174904 -1.5707963239587988</pose>
+    </frame>
+    <frame name='l_hand_thumb_skin_4' attached_to='l_hand_thumb_skin_4_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_thumb_skin_5_fixed_joint' attached_to='l_hand_thumb_3'>
+      <pose>-2.364491935580304e-11 -0.0034837613996680779 -0.034821366118633297 3.1415926535767662 -1.0887513297983578 -1.5707963268786496</pose>
+    </frame>
+    <frame name='l_hand_thumb_skin_5' attached_to='l_hand_thumb_skin_5_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_thumb_skin_6_fixed_joint' attached_to='l_hand_thumb_3'>
+      <pose>0.0032999999760114922 -0.001828470955204359 -0.036769634404745913 -3.8503000335307765e-16 -0.76574262371992274 -1.5707963267949012</pose>
+    </frame>
+    <frame name='l_hand_thumb_skin_6' attached_to='l_hand_thumb_skin_6_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_thumb_skin_7_fixed_joint' attached_to='l_hand_thumb_3'>
+      <pose>-2.4250157437677441e-11 -0.00028985390069574679 -0.038259640911880922 -3.141562866206268 -0.62094801768201324 -1.5704313693095491</pose>
+    </frame>
+    <frame name='l_hand_thumb_skin_7' attached_to='l_hand_thumb_skin_7_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_thumb_skin_8_fixed_joint' attached_to='l_hand_thumb_3'>
+      <pose>-0.0033000000239885312 -0.0018284709551761871 -0.036769634403557898 3.0714697773952189 -0.77631611571475989 -2.432155397543958</pose>
+    </frame>
+    <frame name='l_hand_thumb_skin_8' attached_to='l_hand_thumb_skin_8_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='l_hand_thumb_skin_9_fixed_joint' attached_to='l_hand_thumb_3'>
+      <pose>-0.0059295259655836041 -0.001191989924952785 -0.032999999998932557 2.9258803345668238 -1.2928372761145017 -2.5531132071417302</pose>
+    </frame>
+    <frame name='l_hand_thumb_skin_9' attached_to='l_hand_thumb_skin_9_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='depth_center_fixed_joint' attached_to='head_link'>
+      <pose>0.051321041980017967 5.5933918402556211e-17 0.053753745595402691 -1.396263401595464 -5.5511151231257827e-17 -1.5707963267948948</pose>
+    </frame>
+    <frame name='depth_center' attached_to='depth_center_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='depth_fixed_joint' attached_to='head_link'>
+      <pose>0.051326753864985392 0.044487100000000057 0.053754752754833213 3.6174008641979e-06 3.4015943103992275e-06 6.3785767852632718e-07</pose>
+    </frame>
+    <frame name='depth' attached_to='depth_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='depth_rgb_fixed_joint' attached_to='head_link'>
+      <pose>0.051326753864985419 0.018487100000000058 0.053754752754833213 3.6174008641979e-06 3.4015943103992275e-06 6.3785767852632718e-07</pose>
+    </frame>
+    <frame name='depth_rgb' attached_to='depth_rgb_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='gaze_fixed_joint' attached_to='head_link'>
+      <pose>0.051140163768605702 5.5727968507965016e-17 -0.0050765276173967422 -1.396263401595464 -5.5511151231257827e-17 -1.5707963267948948</pose>
+    </frame>
+    <frame name='gaze' attached_to='gaze_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='head_leopard_cyclopic_fixed_joint' attached_to='head_link'>
+      <pose>0.063090930821909558 6.9335241576928909e-17 -0.057390972667092921 -1.396263401595464 -5.5511151231257827e-17 -1.5707963267948948</pose>
+    </frame>
+    <frame name='head_leopard_cyclopic' attached_to='head_leopard_cyclopic_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='head_leopard_left_fixed_joint' attached_to='head_link'>
+      <pose>0.06309093082190953 0.033510500000000068 -0.057390972667092921 -1.396263401595464 -5.5511151231257827e-17 -1.5707963267948948</pose>
+    </frame>
+    <frame name='head_leopard_left' attached_to='head_leopard_left_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='head_leopard_right_fixed_joint' attached_to='head_link'>
+      <pose>0.063090930821909585 -0.033510499999999929 -0.057390972667092921 -1.396263401595464 -5.5511151231257827e-17 -1.5707963267948948</pose>
+    </frame>
+    <frame name='head_leopard_right' attached_to='head_leopard_right_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_arm_ft_fixed_joint' attached_to='r_shoulder_2'>
+      <pose>-0.0068499999999994754 -0.015000000000000039 -0.084299999999999931 -3.141592653589786 1.4451318944920181e-16 1.5707963267948948</pose>
+    </frame>
+    <frame name='r_arm_ft' attached_to='r_arm_ft_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_index_skin_0_fixed_joint' attached_to='r_hand_index_3'>
+      <pose>3.4694469519536142e-17 -0.0024339289821923848 -0.031405456932282139 0 1.2225052508328904 -1.5707963267948966</pose>
+    </frame>
+    <frame name='r_hand_index_skin_0' attached_to='r_hand_index_skin_0_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_index_skin_10_fixed_joint' attached_to='r_hand_index_3'>
+      <pose>-0.0032999999999999701 -0.0040819541250192706 -0.037766683178108773 3.14159265358979 1.5049113190891164 1.5707963267948937</pose>
+    </frame>
+    <frame name='r_hand_index_skin_10' attached_to='r_hand_index_skin_10_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_index_skin_11_fixed_joint' attached_to='r_hand_index_3'>
+      <pose>-0.0033000000000000039 -0.0031311591905267828 -0.033280416916158302 8.0788864056885948e-16 1.2200945546251301 -1.5707963267948957</pose>
+    </frame>
+    <frame name='r_hand_index_skin_11' attached_to='r_hand_index_skin_11_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_index_skin_1_fixed_joint' attached_to='r_hand_index_3'>
+      <pose>0.0032999999999999969 -0.0031311591905268392 -0.033280416916158302 8.0788864056885948e-16 1.2200945546251301 -1.5707963267948957</pose>
+    </frame>
+    <frame name='r_hand_index_skin_1' attached_to='r_hand_index_skin_1_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_index_skin_2_fixed_joint' attached_to='r_hand_index_3'>
+      <pose>6.9388939039072284e-18 -0.0037582538946495381 -0.035192048101204187 -2.1185798012535739e-16 1.3056809850152773 -1.5707963267948977</pose>
+    </frame>
+    <frame name='r_hand_index_skin_2' attached_to='r_hand_index_skin_2_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_index_skin_3_fixed_joint' attached_to='r_hand_index_3'>
+      <pose>0.0033000000000000039 -0.0040819541250192992 -0.037766683178108773 3.14159265358979 1.5049113190891164 1.5707963267948937</pose>
+    </frame>
+    <frame name='r_hand_index_skin_3' attached_to='r_hand_index_skin_3_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_index_skin_4_fixed_joint' attached_to='r_hand_index_3'>
+      <pose>0.0059295259422763591 -0.001192333906437776 -0.037999999585265287 -3.141591441088051 1.2994443469481556 2.7771567104611421</pose>
+    </frame>
+    <frame name='r_hand_index_skin_4' attached_to='r_hand_index_skin_4_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_index_skin_5_fixed_joint' attached_to='r_hand_index_3'>
+      <pose>6.9388939039072284e-18 -0.003484106014664784 -0.039821364906737489 3.1415926535897931 1.0887516776345889 1.5707963267948959</pose>
+    </frame>
+    <frame name='r_hand_index_skin_5' attached_to='r_hand_index_skin_5_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_index_skin_6_fixed_joint' attached_to='r_hand_index_3'>
+      <pose>0.0033000000000000039 -0.001828816247865406 -0.041769633768025949 -3.1415922528879041 0.77881578844232502 2.532068038049025</pose>
+    </frame>
+    <frame name='r_hand_index_skin_6' attached_to='r_hand_index_skin_6_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_index_skin_7_fixed_joint' attached_to='r_hand_index_3'>
+      <pose>-2.775557561562891e-17 -0.00029019971164920277 -0.04325964081094158 -3.141592653411815 0.62094836613847348 1.5712124827356653</pose>
+    </frame>
+    <frame name='r_hand_index_skin_7' attached_to='r_hand_index_skin_7_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_index_skin_8_fixed_joint' attached_to='r_hand_index_3'>
+      <pose>-0.0032999999999999839 -0.001828816247865406 -0.041769633768025949 3.1415922528879041 0.77881578844232502 0.60952461554076809</pose>
+    </frame>
+    <frame name='r_hand_index_skin_8' attached_to='r_hand_index_skin_8_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_index_skin_9_fixed_joint' attached_to='r_hand_index_3'>
+      <pose>-0.0059295259422763522 -0.001192333906437804 -0.037999999585265343 3.1415914410880514 1.2994443469481547 0.36443594312865057</pose>
+    </frame>
+    <frame name='r_hand_index_skin_9' attached_to='r_hand_index_skin_9_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_middle_skin_0_fixed_joint' attached_to='r_hand_middle_2'>
+      <pose>-2.0816681711721691e-17 -0.0024339180582365061 -0.031405457778888868 3.2530036382981908e-16 1.2225055986691202 -1.5707963267948968</pose>
+    </frame>
+    <frame name='r_hand_middle_skin_0' attached_to='r_hand_middle_skin_0_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_middle_skin_10_fixed_joint' attached_to='r_hand_middle_2'>
+      <pose>-0.0033000000000000108 -0.0040819409883983693 -0.037766684597958011 -3.1415926535897909 1.5049109712528816 1.5707963267948997</pose>
+    </frame>
+    <frame name='r_hand_middle_skin_10' attached_to='r_hand_middle_skin_10_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_middle_skin_11_fixed_joint' attached_to='r_hand_middle_2'>
+      <pose>-0.0033000000000000251 -0.0031311476143918719 -0.03328041800528686 -4.8473364524039158e-16 1.2200949024613592 -1.5707963267948972</pose>
+    </frame>
+    <frame name='r_hand_middle_skin_11' attached_to='r_hand_middle_skin_11_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_middle_skin_1_fixed_joint' attached_to='r_hand_middle_2'>
+      <pose>0.003299999999999987 -0.0031311476143918988 -0.033280418005286923 -6.4631152698718881e-16 1.220094902461359 -1.5707963267948977</pose>
+    </frame>
+    <frame name='r_hand_middle_skin_1' attached_to='r_hand_middle_skin_1_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_middle_skin_2_fixed_joint' attached_to='r_hand_middle_2'>
+      <pose>-4.5102810375396978e-17 -0.0037582416535799912 -0.035192049408458943 2.1185825154430206e-16 1.3056813328515084 -1.570796326794897</pose>
+    </frame>
+    <frame name='r_hand_middle_skin_2' attached_to='r_hand_middle_skin_2_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_middle_skin_3_fixed_joint' attached_to='r_hand_middle_2'>
+      <pose>0.0032999999999999419 -0.0040819409883984248 -0.037766684597958011 -3.14159265358979 1.5049109712528816 1.5707963267949003</pose>
+    </frame>
+    <frame name='r_hand_middle_skin_3' attached_to='r_hand_middle_skin_3_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_middle_skin_4_fixed_joint' attached_to='r_hand_middle_2'>
+      <pose>0.0059295259422763209 -0.0011923206886612081 -0.037999999999999978 -3.1415926535897918 1.299444222971363 2.777155542325588</pose>
+    </frame>
+    <frame name='r_hand_middle_skin_4' attached_to='r_hand_middle_skin_4_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_middle_skin_5_fixed_joint' attached_to='r_hand_middle_2'>
+      <pose>-2.4286128663675299e-17 -0.003484092163351105 -0.03982136611863335 -3.1415926535897931 1.0887513297983602 1.5707963267948972</pose>
+    </frame>
+    <frame name='r_hand_middle_skin_5' attached_to='r_hand_middle_skin_5_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_middle_skin_6_fixed_joint' attached_to='r_hand_middle_2'>
+      <pose>0.003299999999999977 -0.001828801718873396 -0.041769634404151927 -3.1415926535897931 0.77881558931378292 2.5320677565811991</pose>
+    </frame>
+    <frame name='r_hand_middle_skin_6' attached_to='r_hand_middle_skin_6_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_middle_skin_7_fixed_joint' attached_to='r_hand_middle_2'>
+      <pose>-5.2041704279304213e-17 -0.00029018466437888407 -0.043259640911880892 -3.1415926535897931 0.62094801830227386 1.5712124826321161</pose>
+    </frame>
+    <frame name='r_hand_middle_skin_7' attached_to='r_hand_middle_skin_7_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_middle_skin_8_fixed_joint' attached_to='r_hand_middle_2'>
+      <pose>-0.0033000000000000221 -0.001828801718873341 -0.04176963440415199 3.1415926535897931 0.7788155893137837 0.60952489700859347</pose>
+    </frame>
+    <frame name='r_hand_middle_skin_8' attached_to='r_hand_middle_skin_8_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_middle_skin_9_fixed_joint' attached_to='r_hand_middle_2'>
+      <pose>-0.0059295259422763799 -0.001192320688661153 -0.037999999999999978 3.1415926535897918 1.2994442229713619 0.36443711126420508</pose>
+    </frame>
+    <frame name='r_hand_middle_skin_9' attached_to='r_hand_middle_skin_9_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_pinkie_skin_0_fixed_joint' attached_to='r_hand_pinkie_2'>
+      <pose>0 -0.0024339180582408641 -0.031405457778888812 0 1.2225055986691293 -1.5707963267948972</pose>
+    </frame>
+    <frame name='r_hand_pinkie_skin_0' attached_to='r_hand_pinkie_skin_0_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_pinkie_skin_10_fixed_joint' attached_to='r_hand_pinkie_2'>
+      <pose>-0.0032999999999999969 -0.0040819409884027824 -0.037766684597957838 3.1415926535897913 1.5049109712528748 1.5707963267948983</pose>
+    </frame>
+    <frame name='r_hand_pinkie_skin_10' attached_to='r_hand_pinkie_skin_10_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_pinkie_skin_11_fixed_joint' attached_to='r_hand_pinkie_2'>
+      <pose>-0.00329999999999999 -0.003131147614396312 -0.033280418005286798 0 1.2200949024613703 -1.5707963267948968</pose>
+    </frame>
+    <frame name='r_hand_pinkie_skin_11' attached_to='r_hand_pinkie_skin_11_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_pinkie_skin_1_fixed_joint' attached_to='r_hand_pinkie_2'>
+      <pose>0.0033000000000000108 -0.0031311476143962851 -0.033280418005286749 0 1.2200949024613703 -1.5707963267948968</pose>
+    </frame>
+    <frame name='r_hand_pinkie_skin_1' attached_to='r_hand_pinkie_skin_1_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_pinkie_skin_2_fixed_joint' attached_to='r_hand_pinkie_2'>
+      <pose>0 -0.0037582416535843211 -0.03519204940845877 -4.237165030886201e-16 1.3056813328515182 -1.5707963267948979</pose>
+    </frame>
+    <frame name='r_hand_pinkie_skin_2' attached_to='r_hand_pinkie_skin_2_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_pinkie_skin_3_fixed_joint' attached_to='r_hand_pinkie_2'>
+      <pose>0.0033000000000000182 -0.0040819409884026991 -0.0377666845979579 3.1415926535897891 1.5049109712528714 1.5707963267948961</pose>
+    </frame>
+    <frame name='r_hand_pinkie_skin_3' attached_to='r_hand_pinkie_skin_3_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_pinkie_skin_4_fixed_joint' attached_to='r_hand_pinkie_2'>
+      <pose>0.005929525942276366 -0.00119232068866551 -0.037999999999999812 3.141592653589762 1.2994442229713599 2.7771555423255578</pose>
+    </frame>
+    <frame name='r_hand_pinkie_skin_4' attached_to='r_hand_pinkie_skin_4_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_pinkie_skin_5_fixed_joint' attached_to='r_hand_pinkie_2'>
+      <pose>1.387778780781446e-17 -0.00348409216335549 -0.039821366118633239 3.1415926535897927 1.0887513297983518 1.5707963267948968</pose>
+    </frame>
+    <frame name='r_hand_pinkie_skin_5' attached_to='r_hand_pinkie_skin_5_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_pinkie_skin_6_fixed_joint' attached_to='r_hand_pinkie_2'>
+      <pose>0.0033000000000000039 -0.0018288017188776431 -0.041769634404151768 3.1415926535897829 0.77881558931377859 2.532067756581192</pose>
+    </frame>
+    <frame name='r_hand_pinkie_skin_6' attached_to='r_hand_pinkie_skin_6_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_pinkie_skin_7_fixed_joint' attached_to='r_hand_pinkie_2'>
+      <pose>-6.9388939039072284e-18 -0.00029018466438307522 -0.043259640911880837 3.1415926535897931 0.62094801830226487 1.5712124826321161</pose>
+    </frame>
+    <frame name='r_hand_pinkie_skin_7' attached_to='r_hand_pinkie_skin_7_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_pinkie_skin_8_fixed_joint' attached_to='r_hand_pinkie_2'>
+      <pose>-0.00329999999999999 -0.0018288017188776431 -0.041769634404151768 -3.1415926535897829 0.77881558931377792 0.60952489700860102</pose>
+    </frame>
+    <frame name='r_hand_pinkie_skin_8' attached_to='r_hand_pinkie_skin_8_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_pinkie_skin_9_fixed_joint' attached_to='r_hand_pinkie_2'>
+      <pose>-0.0059295259422763522 -0.001192320688665482 -0.037999999999999812 -3.1415926535897629 1.2994442229713601 0.36443711126423539</pose>
+    </frame>
+    <frame name='r_hand_pinkie_skin_9' attached_to='r_hand_pinkie_skin_9_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_ring_skin_0_fixed_joint' attached_to='r_hand_ring_2'>
+      <pose>3.4694469519536142e-18 -0.002433918274374836 -0.031405457762138211 4.879505364959387e-16 1.2225055917869312 -1.570796326794897</pose>
+    </frame>
+    <frame name='r_hand_ring_skin_0' attached_to='r_hand_ring_skin_0_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_ring_skin_10_fixed_joint' attached_to='r_hand_ring_2'>
+      <pose>-0.0033000000000000108 -0.0040819412483159567 -0.037766684569865372 3.14159265358979 1.5049109781350736 1.5707963267948966</pose>
+    </frame>
+    <frame name='r_hand_ring_skin_10' attached_to='r_hand_ring_skin_10_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_ring_skin_11_fixed_joint' attached_to='r_hand_ring_2'>
+      <pose>-0.003300000000000003 -0.0031311478434340461 -0.033280417983737882 -4.8473363612116691e-16 1.2200948955791717 -1.5707963267948974</pose>
+    </frame>
+    <frame name='r_hand_ring_skin_11' attached_to='r_hand_ring_skin_11_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_ring_skin_1_fixed_joint' attached_to='r_hand_ring_2'>
+      <pose>0.0032999999999999969 -0.0031311478434340461 -0.03328041798373782 -4.8473363612116691e-16 1.2200948955791717 -1.5707963267948974</pose>
+    </frame>
+    <frame name='r_hand_ring_skin_1' attached_to='r_hand_ring_skin_1_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_ring_skin_2_fixed_joint' attached_to='r_hand_ring_2'>
+      <pose>1.214306433183765e-17 -0.0037582418957782799 -0.035192049382594022 2.1185824617407695e-16 1.305681325969319 -1.5707963267948957</pose>
+    </frame>
+    <frame name='r_hand_ring_skin_2' attached_to='r_hand_ring_skin_2_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_ring_skin_3_fixed_joint' attached_to='r_hand_ring_2'>
+      <pose>0.003299999999999987 -0.0040819412483159012 -0.037766684569865372 3.1415926535897882 1.5049109781350736 1.5707963267948923</pose>
+    </frame>
+    <frame name='r_hand_ring_skin_3' attached_to='r_hand_ring_skin_3_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_ring_skin_4_fixed_joint' attached_to='r_hand_ring_2'>
+      <pose>0.0059295259422763522 -0.001192320950184345 -0.037999999991794209 -3.14159262959959 1.299444225424335 2.7771555654379738</pose>
+    </frame>
+    <frame name='r_hand_ring_skin_4' attached_to='r_hand_ring_skin_4_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_ring_skin_5_fixed_joint' attached_to='r_hand_ring_2'>
+      <pose>-1.214306433183765e-17 -0.003484092437409297 -0.039821366094655142 3.1415926535897927 1.0887513366805475 1.5707963267948968</pose>
+    </frame>
+    <frame name='r_hand_ring_skin_5' attached_to='r_hand_ring_skin_5_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_ring_skin_6_fixed_joint' attached_to='r_hand_ring_2'>
+      <pose>0.0032999999999999969 -0.0018288020063398911 -0.04176963439156578 -3.1415926456616212 0.7788155932536851 2.5320677621502399</pose>
+    </frame>
+    <frame name='r_hand_ring_skin_6' attached_to='r_hand_ring_skin_6_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_ring_skin_7_fixed_joint' attached_to='r_hand_ring_2'>
+      <pose>3.4694469519536142e-18 -0.00029018496209984312 -0.043259640909883879 -3.1415926535862719 0.62094802518446168 1.5712124826341647</pose>
+    </frame>
+    <frame name='r_hand_ring_skin_7' attached_to='r_hand_ring_skin_7_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_ring_skin_8_fixed_joint' attached_to='r_hand_ring_2'>
+      <pose>-0.0032999999999999961 -0.0018288020063398911 -0.041769634391565891 3.1415926456616212 0.77881559325368432 0.60952489143955346</pose>
+    </frame>
+    <frame name='r_hand_ring_skin_8' attached_to='r_hand_ring_skin_8_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_ring_skin_9_fixed_joint' attached_to='r_hand_ring_2'>
+      <pose>-0.0059295259422763704 -0.0011923209501843719 -0.037999999991794209 3.1415926295995891 1.2994442254243355 0.36443708815181947</pose>
+    </frame>
+    <frame name='r_hand_ring_skin_9' attached_to='r_hand_ring_skin_9_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_thumb_skin_0_fixed_joint' attached_to='r_hand_thumb_3'>
+      <pose>-5.5511151231257827e-17 -0.0024335872945535908 -0.026405457778889131 2.4397527287237755e-15 -1.2225055986691404 1.5707963267948852</pose>
+    </frame>
+    <frame name='r_hand_thumb_skin_0' attached_to='r_hand_thumb_skin_0_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_thumb_skin_10_fixed_joint' attached_to='r_hand_thumb_3'>
+      <pose>-0.0033000000000000529 -0.004081610224715565 -0.032766684597958277 3.1415926535897771 -1.504910971252976 -1.5707963267949248</pose>
+    </frame>
+    <frame name='r_hand_thumb_skin_10' attached_to='r_hand_thumb_skin_10_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_thumb_skin_11_fixed_joint' attached_to='r_hand_thumb_3'>
+      <pose>-0.0033000000000000529 -0.003130816850709039 -0.028280418005287189 3.2315576349361382e-15 -1.2200949024613812 1.5707963267948852</pose>
+    </frame>
+    <frame name='r_hand_thumb_skin_11' attached_to='r_hand_thumb_skin_11_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_thumb_skin_1_fixed_joint' attached_to='r_hand_thumb_3'>
+      <pose>0.0032999999999999701 -0.003130816850708928 -0.02828041800528714 3.1415926535897918 -0.61086523819801819 -1.5707963267949119</pose>
+    </frame>
+    <frame name='r_hand_thumb_skin_1' attached_to='r_hand_thumb_skin_1_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_thumb_skin_2_fixed_joint' attached_to='r_hand_thumb_3'>
+      <pose>0 -0.0037579108898970199 -0.030192049408459161 3.1778737731648352e-15 -1.3056813328515351 1.5707963267948875</pose>
+    </frame>
+    <frame name='r_hand_thumb_skin_2' attached_to='r_hand_thumb_skin_2_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_thumb_skin_3_fixed_joint' attached_to='r_hand_thumb_3'>
+      <pose>0.0032999999999999969 -0.004081610224715454 -0.032766684597958312 3.1415926535897918 -0.61086523819801797 -1.5707963267949121</pose>
+    </frame>
+    <frame name='r_hand_thumb_skin_3' attached_to='r_hand_thumb_skin_3_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_thumb_skin_4_fixed_joint' attached_to='r_hand_thumb_3'>
+      <pose>0.0059295259422763869 -0.0011919899249781261 -0.033000000000000258 1.5707963267948788 -1.5075075528423685 -1.5707963267949248</pose>
+    </frame>
+    <frame name='r_hand_thumb_skin_4' attached_to='r_hand_thumb_skin_4_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_thumb_skin_5_fixed_joint' attached_to='r_hand_thumb_3'>
+      <pose>-5.5511151231257827e-17 -0.0034837613996682448 -0.034821366118633637 3.1415926535897909 -1.08875132979837 -1.5707963267949132</pose>
+    </frame>
+    <frame name='r_hand_thumb_skin_5' attached_to='r_hand_thumb_skin_5_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_thumb_skin_6_fixed_joint' attached_to='r_hand_thumb_3'>
+      <pose>0.0032999999999999969 -0.0018284709551903979 -0.036769634404152228 -1.2320960072054166e-15 -0.7657426207446858 -1.5707963267949123</pose>
+    </frame>
+    <frame name='r_hand_thumb_skin_6' attached_to='r_hand_thumb_skin_6_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_thumb_skin_7_fixed_joint' attached_to='r_hand_thumb_3'>
+      <pose>-2.775557561562891e-17 -0.00028985390069591332 -0.038259640911881262 -3.1415628661866619 -0.62094801768208963 -1.570431369087355</pose>
+    </frame>
+    <frame name='r_hand_thumb_skin_7' attached_to='r_hand_thumb_skin_7_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_thumb_skin_8_fixed_joint' attached_to='r_hand_thumb_3'>
+      <pose>-0.0032999999999999969 -0.0018284709551905089 -0.03676963440415227 3.0714697742502359 -0.77631611534148948 -2.4321553929316551</pose>
+    </frame>
+    <frame name='r_hand_thumb_skin_8' attached_to='r_hand_thumb_skin_8_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='r_hand_thumb_skin_9_fixed_joint' attached_to='r_hand_thumb_3'>
+      <pose>-0.0059295259422763869 -0.001191989924978321 -0.033000000000000237 2.9258803249384768 -1.2928372753400146 -2.5531131970963021</pose>
+    </frame>
+    <frame name='r_hand_thumb_skin_9' attached_to='r_hand_thumb_skin_9_fixed_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+  </model>
+</sdf>
